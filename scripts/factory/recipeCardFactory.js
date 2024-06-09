@@ -21,7 +21,7 @@ export function createRecipeCard(data) {
     )
     .join("");
 
-  card.innerHTML = `<div class="card recipe-card">
+  card.innerHTML = `<div class="recipe-card card">
               <img class="card-img-top" src="${imageSrc}" alt="${name}" loading="lazy">
               <span class="recipe-card__time">${time} min</span>
               <div class="card-body">
