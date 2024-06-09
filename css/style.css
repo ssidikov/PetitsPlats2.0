@@ -1,4 +1,193 @@
+@import url(https://fonts.googleapis.com/css?family=Anton:regular);
+@import url(https://fonts.googleapis.com/css?family=Manrope:200,300,regular,500,600,700,800);
+* {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+ul {
+  list-style: none;
+}
+
+:root {
+  --primary-color: #ffd15b;
+  --secondary-color: #1b1b1b;
+  --tertiary-color: #7a7a7a;
+  --white-color: #fff;
+  --background-color: #ededed;
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  font-style: italic;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .header {
-  background-image: url(../assets/images/header-background.webp);
-  background: red;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%), url(../assets/images/header-background.webp) lightgray 50%/cover no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.header .hero {
+  margin-top: 12vh;
+  margin-bottom: 9.5vh;
+}
+.header .hero-title {
+  font-family: Anton, sans-serif;
+  color: var(--primary-color);
+  font-size: 44px;
+  text-align: center;
+  line-height: normal;
+  margin-bottom: 30px;
+}
+.header .hero-form {
+  justify-content: center;
+  height: 72px;
+  border: none;
+}
+.header .hero-form-input {
+  outline: none;
+  border-radius: 11px;
+  color: var(--tertiary-color);
+  font-family: Manrope, sans-serif;
+  font-weight: 400;
+  line-height: normal;
+  padding: 24px 0 26px 35px;
+}
+.header .hero-form-button {
+  width: 51px;
+  height: 52px;
+  left: -65px;
+  top: 10px;
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+  border-radius: 10px;
+  border: none;
+}
+
+.filter {
+  margin-top: 22px;
+  margin-bottom: 55px;
+}
+
+.card-img-top {
+  height: 253px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.card-body {
+  padding: 32px 25px;
+}
+
+.card-title {
+  font-family: Anton, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 29px;
+}
+
+.card-description__name {
+  color: var(--tertiary-color);
+  font-family: Manrope;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1.08px;
+  text-transform: uppercase;
+}
+
+.card-description__text {
+  color: var(--secondary-color);
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.filter-bar {
+  width: 50%;
+}
+
+.form-control {
+  width: 30%;
+  padding: 17px 16px;
+  align-items: center;
+  border-radius: 11px;
+  background: var(--white-color);
+}
+
+.filter-number {
+  float: right;
+  color: var(--secondary-color);
+  font-family: Anton, sans-serif;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.recipes-card {
+  margin-bottom: 4.5vh;
+  max-width: 380px;
+  border-radius: 21px;
+  position: relative;
+  box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
+  padding: 0;
+}
+
+.recipe-card__time {
+  position: absolute;
+  top: 21px;
+  right: 22px;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  font-size: 12px;
+  font-family: Manrope, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 5px 15px;
+  border-radius: 14px;
+}
+
+.card-description__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  padding: 0;
+}
+
+.card-description__item-ingredients {
+  color: var(--secondary-color);
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.card-description__item-quantity {
+  color: var(--tertiary-color);
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }/*# sourceMappingURL=style.css.map */
