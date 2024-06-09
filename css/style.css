@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Anton:regular);
 @import url(https://fonts.googleapis.com/css?family=Manrope:200,300,regular,500,600,700,800);
+
 * {
   margin: 0;
   padding: 0;
@@ -40,10 +41,12 @@ img, svg {
   background-size: cover;
   background-position: center;
 }
+
 .header .hero {
   margin-top: 12vh;
   margin-bottom: 9.5vh;
 }
+
 .header .hero-title {
   font-family: Anton, sans-serif;
   color: var(--primary-color);
@@ -52,11 +55,13 @@ img, svg {
   line-height: normal;
   margin-bottom: 30px;
 }
+
 .header .hero-form {
   justify-content: center;
   height: 72px;
   border: none;
 }
+
 .header .hero-form-input {
   outline: none;
   border-radius: 11px;
@@ -66,6 +71,7 @@ img, svg {
   line-height: normal;
   padding: 24px 0 26px 35px;
 }
+
 .header .hero-form-button {
   background-color: var(--secondary-color);
   color: var(--white-color);
@@ -85,7 +91,7 @@ img, svg {
 .card-img-top {
   height: 253px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .card-body {
@@ -149,7 +155,7 @@ img, svg {
 
 .recipes-card {
   margin-bottom: 4.5vh;
-  max-width: 380px;
+  /* max-width: 380px; */
 }
 
 .recipe-card {
@@ -206,4 +212,6 @@ input[type=search]::-webkit-search-cancel-button {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,52 +1,40 @@
-function createRecipeCard() {
-  // export function createRecipeCard(data)
-  // const { id, image, name, ingredients, ingredient, quantity, unit, time, description } = data;
+export function createRecipeCard(data) {
+  const { id, image, name, ingredients, time, description } = data;
 
-  // const imageSrc = `./assets/images/${image}`;
+  const imageSrc = `./assets/images/${image}`;
 
   const recipeCards = document.querySelector(".recipes-cards");
 
   const card = document.createElement("article");
-  // card.id = id;
-  card.classList.add("recipes-card,col-md-4");
+  card.id = id;
+  card.classList.add("recipes-card", "col-md-4");
+
+  const ingredientsList = ingredients
+    .map(
+      (ingredient) => `
+    <li class="card-description__item">
+      <p class="card-description__item-ingredients">${ingredient.ingredient}</p>
+      <p class="card-description__item-quantity">${ingredient.quantity || ""} ${
+        ingredient.unit || ""
+      }</p>
+    </li>`
+    )
+    .join("");
 
   card.innerHTML = `<div class="card recipe-card">
-              <img class="card-img-top" src="/assets/images/Recette01.jpg" alt="Recipe Image">
-              <span class="recipe-card__time">10 min</span>
+              <img class="card-img-top" src="${imageSrc}" alt="${name}" loading="lazy">
+              <span class="recipe-card__time">${time} min</span>
               <div class="card-body">
-                <h2 class="card-title">Limonade de Coco</h2>
+                <h2 class="card-title">${name}</h2>
                 <div class="card-description">
                   <div class="card-description__recipe">
                     <h3 class="card-description__name">RECETTE</h3>
-                    <p class="card-description__text">Mettre les glaçons à votre goût dans le blender, Ajouter le lait
-                      la
-                      crème de coco,
-                      le jus de 2 citrons et le sucre ensemble. Mixer jusqu'à obtenir la consistance désirée.
-                    </p>
+                    <p class="card-description__text">${description}</p>
                   </div>
                   <div class="card-description__ingredients">
                     <h3 class="card-description__name">INGRÉDIENTS</h3>
                     <ul class="card-description__list row">
-                      <li class="card-description__item col-6">
-                        <p class="card-description__item-ingredients">Jus de citron</p>
-                        <p class="card-description__item-quantity">2</p>
-                      </li>
-                      <li class="card-description__item col-6">
-                        <p class="card-description__item-ingredients">Créme de coco</p>
-                        <p class="card-description__item-quantity">4 cuillères</p>
-                      </li>
-                      <li class="card-description__item col-6">
-                        <p class="card-description__item-ingredients">Lait de coco</p>
-                        <p class="card-description__item-quantity">400ml</p>
-                      </li>
-                      <li class="card-description__item col-6">
-                        <p class="card-description__item-ingredients">Sucre</p>
-                        <p class="card-description__item-quantity">20g</p>
-                      </li>
-                      <li class="card-description__item col-6">
-                        <p class="card-description__item-ingredients">Glaçons</p>
-                        <p class="card-description__item-quantity">2</p>
-                      </li>
+                      ${ingredientsList}
                     </ul>
                   </div>
                 </div>
@@ -57,7 +45,3 @@ function createRecipeCard() {
 
   return card;
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-  createRecipeCard();
-});
