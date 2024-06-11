@@ -4,5 +4,7 @@ import { createRecipeCard } from "../factory/recipeCardFactory.js";
 // console.log(recipes);
 document.addEventListener("DOMContentLoaded", function () {
   // createRecipeCard(recipes);
-  recipes.forEach((recipe) => createRecipeCard(recipe));
+  for (let i = 0; i < recipes.length; i++) {
+    createRecipeCard(recipes[i]);
+  }
 });
