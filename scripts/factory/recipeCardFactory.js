@@ -9,17 +9,19 @@ export function createRecipeCard(data) {
   card.id = id;
   card.classList.add("recipes-card", "col-md-4");
 
-  const ingredientsList = ingredients
-    .map(
-      (ingredient) => `
-    <li class="card-description__item">
-      <p class="card-description__item-ingredients">${ingredient.ingredient}</p>
-      <p class="card-description__item-quantity">${ingredient.quantity || ""} ${
-        ingredient.unit || ""
+  const ingredientsList = (ingredients) => {
+    let result = "";
+
+    for (let i = 0; i < ingredients.length; i++) {
+      result += `<li class="card-description__item">
+        <p class="card-description__item-ingredients">${ingredients[i].ingredient}</p>
+        <p class="card-description__item-quantity">${ingredients[i].quantity || ""} ${
+        ingredients[i].unit || ""
       }</p>
-    </li>`
-    )
-    .join("");
+      </li>`;
+    }
+    return result;
+  };
 
   card.innerHTML = `<div class="recipe-card card">
               <img class="card-img-top" src="${imageSrc}" alt="${name}" loading="lazy">
@@ -34,7 +36,7 @@ export function createRecipeCard(data) {
                   <div class="card-description__ingredients">
                     <h3 class="card-description__name">INGRÉDIENTS</h3>
                     <ul class="card-description__list row">
-                      ${ingredientsList}
+                      ${ingredientsList(ingredients)}
                     </ul>
                   </div>
                 </div>
