@@ -43,10 +43,11 @@ input[type=search]::-webkit-search-cancel-button {
   height: 13px;
   font-size: 18px;
   cursor: pointer;
+  z-index: 999;
 }
 
 .header {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%), url(../assets/images/header-background.webp) lightgray 50%/cover no-repeat;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%), url(/assets/images/header-background.webp) lightgray 50%/cover no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -77,6 +78,9 @@ input[type=search]::-webkit-search-cancel-button {
   line-height: normal;
   padding: 24px 0 26px 35px;
 }
+.header .hero-form-input#text-field-container {
+  width: 85% !important;
+}
 .header .hero-form-button {
   background-color: var(--secondary-color);
   color: var(--white-color);
@@ -93,6 +97,43 @@ input[type=search]::-webkit-search-cancel-button {
   margin-bottom: 55px;
 }
 .filter-bar {
+  margin: 20px 0;
+}
+.filter-options {
+  width: 30%;
+}
+.filter-button {
+  display: inline-flex;
+  padding: 17px 16px;
+  align-items: center;
+  gap: 63px;
+  border-radius: 11px;
+  background: var(--white-color);
+}
+.filter-button:hover {
+  background-color: rgba(255, 209, 91, 0.8078431373);
+}
+.filter .selected-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.filter .selected-option {
+  display: inline-block;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  padding: 17px 18px;
+  gap: 60px;
+  margin: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.filter .selected-option i {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.filter-bar {
   width: 50%;
 }
 .filter-number {
@@ -105,11 +146,24 @@ input[type=search]::-webkit-search-cancel-button {
   line-height: normal;
 }
 .filter .form-control {
-  width: 30%;
+  width: 100%;
   padding: 17px 16px;
   align-items: center;
   border-radius: 11px;
   background: var(--white-color);
+  margin-bottom: 10px;
+  position: relative;
+}
+.filter .form-control .ingredients-list__option {
+  width: 1925px;
+  height: 37px;
+}
+.filter .form-control .dropdown-menu {
+  max-height: 200px;
+  overflow-y: auto;
+}
+.filter .form-control .dropdown-menu li:hover {
+  background-color: #ffc107 !important;
 }
 
 .card-img-top {
@@ -194,4 +248,37 @@ input[type=search]::-webkit-search-cancel-button {
   line-height: normal;
   padding: 5px 15px;
   border-radius: 14px;
+}
+
+.filter-bar {
+  margin: 20px 0;
+}
+
+.selected-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.selected-option {
+  background-color: #ffc107;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  margin: 2px;
+}
+.selected-option i {
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.dropdown-item:hover {
+  background-color: #ffc107 !important;
 }/*# sourceMappingURL=style.css.map */
