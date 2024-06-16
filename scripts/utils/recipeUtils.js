@@ -1,4 +1,4 @@
-// utils/recipeUtils.js
+// Description: This file contains utility functions for recipes.
 
 export function filterRecipesByOptions(
   recipes,
@@ -75,6 +75,29 @@ export function generateOptions(items) {
 export function appendDropdownOptions(selector, options) {
   const element = document.getElementById(selector);
   if (element) {
+    // element.innerHTML = ""; // Clean the previous options
     element.innerHTML += options;
   }
+}
+
+export function getUniqueOptions(recipes) {
+  const ingredients = new Set();
+  const appliances = new Set();
+  const utensils = new Set();
+
+  for (const recipe of recipes) {
+    for (const ing of recipe.ingredients) {
+      ingredients.add(ing.ingredient.toLowerCase());
+    }
+    appliances.add(recipe.appliance.toLowerCase());
+    for (const ut of recipe.ustensils) {
+      utensils.add(ut.toLowerCase());
+    }
+  }
+
+  return {
+    ingredients: Array.from(ingredients),
+    appliances: Array.from(appliances),
+    utensils: Array.from(utensils),
+  };
 }

@@ -1,8 +1,8 @@
-// scripts/eventHandlers/eventHandlers.js
+// Description: This file contains the event handlers for the search form and the dropdowns.
+import { filterRecipesByOptions, getUniqueOptions } from "../utils/recipeUtils.js";
+import { createRecipeCard } from "../factory/recipeCardFactory.js";
 
-import { filterRecipesByOptions } from "../utils/recipeUtils.js";
-import { generateIngredientsList } from "../factory/recipeCardFactory.js";
-
+// Search form event handler
 export function addSearchEventHandler(
   searchInput,
   recipes,
@@ -10,22 +10,33 @@ export function addSearchEventHandler(
   selectedAppliances,
   selectedUtensils,
   displayRecipes,
-  updateRecipeCount
+  updateRecipeCount,
+  updateDropdownOptions
 ) {
-  searchInput.addEventListener("input", function () {
+  searchInput.addEventListener("input", () => {
     const keyword = searchInput.value.trim().toLowerCase();
-    const filteredRecipes = filterRecipesByOptions(
-      recipes,
-      keyword,
-      selectedIngredients,
-      selectedAppliances,
-      selectedUtensils
-    );
-    displayRecipes(filteredRecipes);
-    updateRecipeCount(filteredRecipes.length);
+    let filteredRecipes = recipes;
+    if (keyword.length < 3) {
+      // If the length of the keyword is less than 3, display all recipes without filtering
+      displayRecipes(recipes);
+      updateRecipeCount(recipes.length);
+    } else {
+      // filtering and sorting of recipes by keyword
+      const filteredRecipes = filterRecipesByOptions(
+        recipes,
+        keyword,
+        selectedIngredients,
+        selectedAppliances,
+        selectedUtensils
+      );
+      displayRecipes(filteredRecipes);
+      updateRecipeCount(filteredRecipes.length);
+      updateDropdownOptions(filteredRecipes);
+    }
   });
 }
 
+// Dropdown event handler
 export function addDropdownEventListeners(
   dropdownId,
   selectedArray,
@@ -36,7 +47,8 @@ export function addDropdownEventListeners(
   selectedAppliances,
   selectedUtensils,
   displayRecipes,
-  updateRecipeCount
+  updateRecipeCount,
+  updateDropdownOptions
 ) {
   const dropdown = document.getElementById(dropdownId);
   dropdown.addEventListener("click", (event) => {
@@ -52,12 +64,14 @@ export function addDropdownEventListeners(
         selectedAppliances,
         selectedUtensils,
         displayRecipes,
-        updateRecipeCount
+        updateRecipeCount,
+        updateDropdownOptions
       );
     }
   });
 }
 
+// Update selected options
 function updateSelectedOptions(
   containerId,
   selectedArray,
@@ -67,7 +81,8 @@ function updateSelectedOptions(
   selectedAppliances,
   selectedUtensils,
   displayRecipes,
-  updateRecipeCount
+  updateRecipeCount,
+  updateDropdownOptions
 ) {
   const container = document.getElementById(containerId);
   container.innerHTML = "";
@@ -90,55 +105,35 @@ function updateSelectedOptions(
         selectedAppliances,
         selectedUtensils,
         displayRecipes,
-        updateRecipeCount
+        updateRecipeCount,
+        updateDropdownOptions
       );
     });
   }
 
+  const keyword = searchInput.value.trim().toLowerCase();
   const filteredRecipes = filterRecipesByOptions(
     recipes,
-    searchInput.value.trim().toLowerCase(),
+    keyword,
     selectedIngredients,
     selectedAppliances,
     selectedUtensils
   );
   displayRecipes(filteredRecipes);
   updateRecipeCount(filteredRecipes.length);
+  updateDropdownOptions(filteredRecipes);
 }
 
-function displayRecipes(recipes) {
+// Display recipes cards
+export function displayRecipes(recipes) {
   const recipeCards = document.querySelector(".recipes-cards");
-  recipeCards.innerHTML = recipes
-    .map(
-      (recipe) => `
-        <article id="recipe-${recipe.id}" class="recipes-card col-md-4">
-          <div class="recipe-card card">
-            <img class="card-img-top" src="./assets/images/${recipe.image}" alt="${
-        recipe.name
-      }" loading="lazy">
-            <span class="recipe-card__time">${recipe.time} min</span>
-            <div class="card-body">
-              <h2 class="card-title">${recipe.name}</h2>
-              <div class="card-description">
-                <div class="card-description__recipe">
-                  <h3 class="card-description__name">RECETTE</h3>
-                  <p class="card-description__text">${recipe.description}</p>
-                </div>
-                <div class="card-description__ingredients">
-                  <h3 class="card-description__name">INGRÉDIENTS</h3>
-                  <ul class="card-description__list row">
-                    ${generateIngredientsList(recipe.ingredients)}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>`
-    )
-    .join("");
+  recipeCards.innerHTML = "";
+  for (const recipe of recipes) {
+    recipeCards.innerHTML += createRecipeCard(recipe).outerHTML;
+  }
 }
 
-function updateRecipeCount(count) {
+export function updateRecipeCount(count) {
   const filterNumberElement = document.querySelector(".filter-number");
   if (count === 0) {
     filterNumberElement.textContent = "Aucune recette trouvée pour votre recherche";

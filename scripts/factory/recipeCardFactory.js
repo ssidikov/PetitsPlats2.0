@@ -35,7 +35,7 @@ export function createRecipeCard(data) {
   return card;
 }
 
-export function generateIngredientsList(ingredients) {
+function generateIngredientsList(ingredients) {
   let result = "";
   for (let i = 0; i < ingredients.length; i++) {
     const ing = ingredients[i];
