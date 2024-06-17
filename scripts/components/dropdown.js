@@ -4,7 +4,7 @@ export function initDropdowns() {
   const dropdownButtons = document.querySelectorAll(".dropdown-toggle");
 
   dropdownButtons.forEach((button) => {
-    button.addEventListener("click", function (event) {
+    button.addEventListener("click", function () {
       const dropdownMenu = button.nextElementSibling;
 
       if (dropdownMenu.classList.contains("show")) {

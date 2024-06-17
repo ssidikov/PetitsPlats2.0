@@ -1,30 +1,14 @@
 // Description: Main entry point for the application. This file is responsible for initializing the application and setting up event listeners.
 import { recipes } from "../../data/recipes.js";
-import { createRecipeCard } from "./factory/recipeCardFactory.js";
-import { generateOptions, appendDropdownOptions, getUniqueOptions } from "./utils/recipeUtils.js";
-import { initDropdowns } from "./components/dropdown.js";
+// import { createRecipeCard } from "./factory/recipeCardFactory.js";
+import { generateOptions, appendDropdownOptions, getUniqueOptions } from "../utils/recipeUtils.js";
+import { initDropdowns } from "../components/dropdown.js";
 import {
   addSearchEventHandler,
   addDropdownEventListeners,
   displayRecipes,
   updateRecipeCount,
-} from "./events/eventHandlers.js";
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   recipes.forEach((recipe) => createRecipeCard(recipe));
-//   updateRecipeCount(recipes.length);
-
-//   const selectedIngredients = [];
-//   const selectedAppliances = [];
-//   const selectedUtensils = [];
-
-//   function updateDropdownOptions(filteredRecipes) {
-//     const { ingredients, appliances, utensils } = getUniqueOptions(filteredRecipes);
-
-//     appendDropdownOptions("ingredients-list", generateOptions(ingredients));
-//     appendDropdownOptions("appliances-list", generateOptions(appliances));
-//     appendDropdownOptions("utensils-list", generateOptions(utensils));
-//   }
+} from "../events/eventHandlers.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   displayRecipes(recipes);

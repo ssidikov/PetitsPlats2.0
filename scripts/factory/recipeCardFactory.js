@@ -1,7 +1,7 @@
 // factory/recipeCardFactory.js
 
 export function createRecipeCard(data) {
-  const { id, image, name, ingredients, appliance, ustensils, time, description } = data;
+  const { id, image, name, ingredients, time, description } = data;
 
   const imageSrc = `./assets/images/${image}`;
   const recipeCards = document.querySelector(".recipes-cards");
