@@ -1,4 +1,4 @@
-// factory/recipeCardFactory.js
+// Description: Factory function to create a recipe card.
 
 export function createRecipeCard(data) {
   const { id, image, name, ingredients, time, description } = data;
@@ -35,14 +35,17 @@ export function createRecipeCard(data) {
   return card;
 }
 
+// Generate the list of ingredients
 function generateIngredientsList(ingredients) {
   let result = "";
   for (let i = 0; i < ingredients.length; i++) {
-    const ing = ingredients[i];
+    const ingredientsList = ingredients[i];
     result += `
       <li class="card-description__item">
-        <p class="card-description__item-ingredients">${ing.ingredient}</p>
-        <p class="card-description__item-quantity">${ing.quantity || ""} ${ing.unit || ""}</p>
+        <p class="card-description__item-ingredients">${ingredientsList.ingredient}</p>
+        <p class="card-description__item-quantity">${ingredientsList.quantity || ""} ${
+      ingredientsList.unit || ""
+    }</p>
       </li>`;
   }
   return result;
