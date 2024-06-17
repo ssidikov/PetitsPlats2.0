@@ -1,5 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Anton:regular)
-@import url(https://fonts.googleapis.com/css?family=Manrope:200,300,regular,500,600,700,800)
+@import url('https://fonts.googleapis.com/css?family=Anton:regular')
+@import url('https://fonts.googleapis.com/css?family=Manrope:200,300,regular,500,600,700,800')
 
 *
   margin: 0
@@ -26,7 +26,6 @@ img, svg
   max-width: 100%
   height: auto
   vertical-align: middle
-  font-style: italic
   background-repeat: no-repeat
   background-size: cover
 
@@ -44,9 +43,11 @@ input[type='search']::-webkit-search-cancel-button
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%), url(/assets/images/header-background.webp) lightgray 50% / cover no-repeat
   background-size: cover
   background-position: center
+
   .hero
     margin-top: 12vh
     margin-bottom: 9.5vh
+
     &-title
       font-family: Anton, sans-serif
       color: var(--primary-color)
@@ -54,12 +55,13 @@ input[type='search']::-webkit-search-cancel-button
       text-align: center
       line-height: normal
       margin-bottom: 30px
+
     &-form
       justify-content: center
       height: 5vh
-      border: none
-      // display: flex
       align-items: center
+      border: none
+
       &-input
         outline: none
         border-radius: 11px
@@ -68,8 +70,7 @@ input[type='search']::-webkit-search-cancel-button
         font-weight: 400
         line-height: normal
         padding: 24px 0 26px 35px
-        &#text-field-container
-          width: 85% !important
+
       &-button
         background-color: var(--secondary-color)
         color: var(--white-color)
@@ -83,10 +84,13 @@ input[type='search']::-webkit-search-cancel-button
 .filter
   margin-top: 22px
   margin-bottom: 55px
+
   &-bar
     margin: 20px 0
+
   &-options
     width: 30%
+
   &-button
     display: inline-flex
     padding: 17px 16px
@@ -94,13 +98,16 @@ input[type='search']::-webkit-search-cancel-button
     gap: 63px
     border-radius: 11px
     background: var(--white-color)
+
     &:hover
       background-color: #ffd15bce
+
   .selected-options
     display: flex
     flex-wrap: wrap
     gap: 8px
     margin-top: 10px
+
   .selected-option
     display: inline-block
     background-color: var(--primary-color)
@@ -110,19 +117,22 @@ input[type='search']::-webkit-search-cancel-button
     margin: 5px
     font-size: 14px
     font-weight: bold
-  .selected-option i
-    margin-left: 10px
-    cursor: pointer
+
+    i
+      margin-left: 10px
+      cursor: pointer
+
   &-bar
     width: 50%
+
   &-number
     float: right
     color: var(--secondary-color)
     font-family: Anton, sans-serif
     font-size: 21px
-    font-style: normal
     font-weight: 400
     line-height: normal
+
   .form-control
     width: 100%
     padding: 17px 16px
@@ -131,12 +141,15 @@ input[type='search']::-webkit-search-cancel-button
     background: var(--white-color)
     margin-bottom: 10px
     position: relative
+
     .ingredients-list__option
       width: 1925px
       height: 37px
+
     .dropdown-menu
       max-height: 200px
       overflow-y: auto
+
     .dropdown-menu li:hover
       background-color: #ffc107 !important
 
@@ -144,15 +157,16 @@ input[type='search']::-webkit-search-cancel-button
   &-img-top
     height: 253px
     object-fit: cover
+
   &-body
     padding: 32px 25px
+
   &-title
     font-family: Anton, sans-serif
     font-size: clamp(0.875rem, 0.8036rem + 0.3571vw, 1.125rem)
-    font-style: normal
     font-weight: 400
-    line-height: normal
     margin-bottom: 29px
+
   &-description
     &__name
       color: var(--tertiary-color)
@@ -196,7 +210,7 @@ input[type='search']::-webkit-search-cancel-button
 .recipes-card
   margin-bottom: 4.5vh
   .recipe-card
-    height: 100vh
+    height: 731px
     position: relative
     border: none
     box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04)

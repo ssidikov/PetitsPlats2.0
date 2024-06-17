@@ -87,7 +87,7 @@ function updateSelectedOptions(
   container.innerHTML = "";
   for (let i = 0; i < selectedArray.length; i++) {
     const option = selectedArray[i];
-    container.innerHTML += `<div class="selected-option">${option} <i class="bi bi-x-circle"></i></div>`;
+    container.innerHTML += `<div class="selected-option">${option} <i class="bi bi-x"></i></div>`;
   }
 
   const removeButtons = container.querySelectorAll(".selected-option i");
