@@ -8,6 +8,16 @@ export function filterRecipes(
   selectedUtensils
 ) {
   // Filter recipes by keyword, ingredients, appliances, and utensils
+  // If the length of the keyword is less than 3, display all recipes without filtering
+  if (
+    keyword.length < 3 &&
+    selectedIngredients.length === 0 &&
+    selectedAppliances.length === 0 &&
+    selectedUtensils.length === 0
+  ) {
+    return recipes;
+  }
+
   let filteredRecipes = [];
   for (let i = 0; i < recipes.length; i++) {
     const recipe = recipes[i];
@@ -44,33 +54,33 @@ export function filterRecipes(
   }
 
   // Bubble sort implementation for sorting filtered recipes
-  for (let i = 0; i < filteredRecipes.length - 1; i++) {
-    for (let j = 0; j < filteredRecipes.length - 1 - i; j++) {
-      const a = filteredRecipes[j];
-      const b = filteredRecipes[j + 1];
+  // for (let i = 0; i < filteredRecipes.length - 1; i++) {
+  //   for (let j = 0; j < filteredRecipes.length - 1 - i; j++) {
+  //     const a = filteredRecipes[j];
+  //     const b = filteredRecipes[j + 1];
 
-      const aContainsKeyword =
-        a.name.toLowerCase().includes(keyword.toLowerCase()) ||
-        a.description.toLowerCase().includes(keyword.toLowerCase()) ||
-        a.appliance.toLowerCase().includes(keyword.toLowerCase()) ||
-        a.ustensils.some((ut) => ut.toLowerCase().includes(keyword.toLowerCase())) ||
-        a.ingredients.some((ing) => ing.ingredient.toLowerCase().includes(keyword.toLowerCase()));
+  //     const aContainsKeyword =
+  //       a.name.toLowerCase().includes(keyword.toLowerCase()) ||
+  //       a.description.toLowerCase().includes(keyword.toLowerCase()) ||
+  //       a.appliance.toLowerCase().includes(keyword.toLowerCase()) ||
+  //       a.ustensils.some((ut) => ut.toLowerCase().includes(keyword.toLowerCase())) ||
+  //       a.ingredients.some((ing) => ing.ingredient.toLowerCase().includes(keyword.toLowerCase()));
 
-      const bContainsKeyword =
-        b.name.toLowerCase().includes(keyword.toLowerCase()) ||
-        b.description.toLowerCase().includes(keyword.toLowerCase()) ||
-        b.appliance.toLowerCase().includes(keyword.toLowerCase()) ||
-        b.ustensils.some((ut) => ut.toLowerCase().includes(keyword.toLowerCase())) ||
-        b.ingredients.some((ing) => ing.ingredient.toLowerCase().includes(keyword.toLowerCase()));
+  //     const bContainsKeyword =
+  //       b.name.toLowerCase().includes(keyword.toLowerCase()) ||
+  //       b.description.toLowerCase().includes(keyword.toLowerCase()) ||
+  //       b.appliance.toLowerCase().includes(keyword.toLowerCase()) ||
+  //       b.ustensils.some((ut) => ut.toLowerCase().includes(keyword.toLowerCase())) ||
+  //       b.ingredients.some((ing) => ing.ingredient.toLowerCase().includes(keyword.toLowerCase()));
 
-      if (aContainsKeyword && !bContainsKeyword) {
-        // Swap a and b
-        const temp = filteredRecipes[j];
-        filteredRecipes[j] = filteredRecipes[j + 1];
-        filteredRecipes[j + 1] = temp;
-      }
-    }
-  }
+  //     if (aContainsKeyword && !bContainsKeyword) {
+  //       // Swap a and b
+  //       const temp = filteredRecipes[j];
+  //       filteredRecipes[j] = filteredRecipes[j + 1];
+  //       filteredRecipes[j + 1] = temp;
+  //     }
+  //   }
+  // }
 
   return filteredRecipes;
 }
@@ -98,13 +108,23 @@ export function getUniqueOptions(recipes) {
   const appliances = new Set();
   const utensils = new Set();
 
+  // for (const recipe of recipes) {
+  //   for (const ing of recipe.ingredients) {
+  //     ingredients.add(ing.ingredient.toLowerCase());
+  //   }
+  //   appliances.add(recipe.appliance.toLowerCase());
+  //   for (const ut of recipe.ustensils) {
+  //     utensils.add(ut.toLowerCase());
+  //   }
+  // }
+
   for (const recipe of recipes) {
     for (const ing of recipe.ingredients) {
-      ingredients.add(ing.ingredient.toLowerCase());
+      ingredients.add(ing.ingredient);
     }
-    appliances.add(recipe.appliance.toLowerCase());
+    appliances.add(recipe.appliance);
     for (const ut of recipe.ustensils) {
-      utensils.add(ut.toLowerCase());
+      utensils.add(ut);
     }
   }
 

@@ -15,23 +15,18 @@ export function addSearchEventHandler(
 ) {
   searchInput.addEventListener("input", () => {
     const keyword = searchInput.value.trim().toLowerCase();
-    if (keyword.length < 3) {
-      // If the length of the keyword is less than 3, display all recipes without filtering
-      displayRecipes(recipes);
-      updateRecipeCount(recipes.length);
-    } else {
-      // filtering and sorting of recipes by keyword
-      const filteredRecipes = filterRecipes(
-        recipes,
-        keyword,
-        selectedIngredients,
-        selectedAppliances,
-        selectedUtensils
-      );
-      displayRecipes(filteredRecipes);
-      updateRecipeCount(filteredRecipes.length);
-      updateDropdownOptions(filteredRecipes);
-    }
+
+    // filtering and sorting of recipes by keyword
+    const filteredRecipes = filterRecipes(
+      recipes,
+      keyword,
+      selectedIngredients,
+      selectedAppliances,
+      selectedUtensils
+    );
+    displayRecipes(filteredRecipes);
+    updateRecipeCount(filteredRecipes.length);
+    updateDropdownOptions(filteredRecipes);
   });
 }
 
