@@ -1,43 +1,54 @@
 // Description: This file contains utility functions for recipes.
 
-export function filterRecipesByOptions(
+export function filterRecipes(
   recipes,
   keyword,
   selectedIngredients,
   selectedAppliances,
   selectedUtensils
 ) {
-  return recipes
-    .filter((recipe) => {
-      const matchesKeyword =
-        keyword === "" ||
-        recipe.name.toLowerCase().includes(keyword.toLowerCase()) ||
-        recipe.description.toLowerCase().includes(keyword.toLowerCase()) ||
-        recipe.appliance.toLowerCase().includes(keyword.toLowerCase()) ||
-        recipe.ustensils.some((ut) => ut.toLowerCase().includes(keyword.toLowerCase())) ||
-        recipe.ingredients.some((ing) =>
-          ing.ingredient.toLowerCase().includes(keyword.toLowerCase())
-        );
+  // Filter recipes by keyword, ingredients, appliances, and utensils
+  let filteredRecipes = [];
+  for (let i = 0; i < recipes.length; i++) {
+    const recipe = recipes[i];
 
-      const matchesIngredients =
-        selectedIngredients.length === 0 ||
-        selectedIngredients.every((selected) =>
-          recipe.ingredients.some((ing) => ing.ingredient.toLowerCase() === selected.toLowerCase())
-        );
+    const matchesKeyword =
+      keyword === "" ||
+      recipe.name.toLowerCase().includes(keyword.toLowerCase()) ||
+      recipe.description.toLowerCase().includes(keyword.toLowerCase()) ||
+      recipe.appliance.toLowerCase().includes(keyword.toLowerCase()) ||
+      recipe.ustensils.some((ut) => ut.toLowerCase().includes(keyword.toLowerCase())) ||
+      recipe.ingredients.some((ing) =>
+        ing.ingredient.toLowerCase().includes(keyword.toLowerCase())
+      );
 
-      const matchesAppliances =
-        selectedAppliances.length === 0 ||
-        selectedAppliances.includes(recipe.appliance.toLowerCase());
+    const matchesIngredients =
+      selectedIngredients.length === 0 ||
+      selectedIngredients.every((selected) =>
+        recipe.ingredients.some((ing) => ing.ingredient.toLowerCase() === selected.toLowerCase())
+      );
 
-      const matchesUtensils =
-        selectedUtensils.length === 0 ||
-        selectedUtensils.every((selected) =>
-          recipe.ustensils.some((ut) => ut.toLowerCase() === selected.toLowerCase())
-        );
+    const matchesAppliances =
+      selectedAppliances.length === 0 ||
+      selectedAppliances.includes(recipe.appliance.toLowerCase());
 
-      return matchesKeyword && matchesIngredients && matchesAppliances && matchesUtensils;
-    })
-    .sort((a, b) => {
+    const matchesUtensils =
+      selectedUtensils.length === 0 ||
+      selectedUtensils.every((selected) =>
+        recipe.ustensils.some((ut) => ut.toLowerCase() === selected.toLowerCase())
+      );
+
+    if (matchesKeyword && matchesIngredients && matchesAppliances && matchesUtensils) {
+      filteredRecipes.push(recipe);
+    }
+  }
+
+  // Bubble sort implementation for sorting filtered recipes
+  for (let i = 0; i < filteredRecipes.length - 1; i++) {
+    for (let j = 0; j < filteredRecipes.length - 1 - i; j++) {
+      const a = filteredRecipes[j];
+      const b = filteredRecipes[j + 1];
+
       const aContainsKeyword =
         a.name.toLowerCase().includes(keyword.toLowerCase()) ||
         a.description.toLowerCase().includes(keyword.toLowerCase()) ||
@@ -53,17 +64,19 @@ export function filterRecipesByOptions(
         b.ingredients.some((ing) => ing.ingredient.toLowerCase().includes(keyword.toLowerCase()));
 
       if (aContainsKeyword && !bContainsKeyword) {
-        return -1;
-      } else if (!aContainsKeyword && bContainsKeyword) {
-        return 1;
-      } else {
-        return 0;
+        // Swap a and b
+        const temp = filteredRecipes[j];
+        filteredRecipes[j] = filteredRecipes[j + 1];
+        filteredRecipes[j + 1] = temp;
       }
-    });
+    }
+  }
+
+  return filteredRecipes;
 }
 
 export function generateOptions(items) {
-  const uniqueItems = Array.from(new Set(items));
+  const uniqueItems = Array.from(new Set(items)); // Remove duplicates using a Set
   let options = "";
   for (let i = 0; i < uniqueItems.length; i++) {
     const item = uniqueItems[i];

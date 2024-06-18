@@ -1,5 +1,5 @@
 // Description: This file contains the event handlers for the search form and the dropdowns.
-import { filterRecipesByOptions } from "../utils/recipeUtils.js";
+import { filterRecipes } from "../utils/recipeUtils.js";
 import { createRecipeCard } from "../factory/recipeCardFactory.js";
 
 // Search form event handler
@@ -21,7 +21,7 @@ export function addSearchEventHandler(
       updateRecipeCount(recipes.length);
     } else {
       // filtering and sorting of recipes by keyword
-      const filteredRecipes = filterRecipesByOptions(
+      const filteredRecipes = filterRecipes(
         recipes,
         keyword,
         selectedIngredients,
@@ -111,7 +111,7 @@ function updateSelectedOptions(
   }
 
   const keyword = searchInput.value.trim().toLowerCase();
-  const filteredRecipes = filterRecipesByOptions(
+  const filteredRecipes = filterRecipes(
     recipes,
     keyword,
     selectedIngredients,
