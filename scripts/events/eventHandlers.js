@@ -46,7 +46,7 @@ export function addDropdownEventListeners(
 ) {
   const dropdown = document.getElementById(dropdownId);
   dropdown.addEventListener("click", (event) => {
-    const option = event.target.textContent.trim();
+    const option = event.target.textContent;
     if (!selectedArray.includes(option)) {
       selectedArray.push(option);
       updateSelectedOptions(
