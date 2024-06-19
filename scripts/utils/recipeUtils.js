@@ -98,8 +98,15 @@ export function generateOptions(items) {
 export function appendDropdownOptions(selector, options) {
   const element = document.getElementById(selector);
   if (element) {
-    element.innerHTML = ""; // Clean the previous options
-    element.innerHTML += options;
+    const inputElement = element.querySelector("input");
+
+    // Clean all elements after search input
+    while (inputElement.nextSibling) {
+      element.removeChild(inputElement.nextSibling);
+    }
+
+    // Add new options after the search input
+    inputElement.insertAdjacentHTML("afterend", options);
   }
 }
 

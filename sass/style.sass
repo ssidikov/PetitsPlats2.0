@@ -261,3 +261,19 @@ img, svg
   & i
     margin-left: 4px
     cursor: pointer
+
+.dropdown-item
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+  & .remove-option
+    display: none
+    margin-left: 10px
+    cursor: pointer
+
+  &.selected
+    background-color: yellow
+
+  &.selected .remove-option
+    display: inline
