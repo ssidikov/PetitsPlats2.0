@@ -53,7 +53,7 @@ export function filterRecipes(
     }
   }
 
-  // Bubble sort implementation for sorting filtered recipes
+  //Bubble sort implementation for sorting filtered recipes
   // for (let i = 0; i < filteredRecipes.length - 1; i++) {
   //   for (let j = 0; j < filteredRecipes.length - 1 - i; j++) {
   //     const a = filteredRecipes[j];
@@ -98,7 +98,7 @@ export function generateOptions(items) {
 export function appendDropdownOptions(selector, options) {
   const element = document.getElementById(selector);
   if (element) {
-    // element.innerHTML = ""; // Clean the previous options
+    element.innerHTML = ""; // Clean the previous options
     element.innerHTML += options;
   }
 }
@@ -108,25 +108,25 @@ export function getUniqueOptions(recipes) {
   const appliances = new Set();
   const utensils = new Set();
 
-  // for (const recipe of recipes) {
-  //   for (const ing of recipe.ingredients) {
-  //     ingredients.add(ing.ingredient.toLowerCase());
-  //   }
-  //   appliances.add(recipe.appliance.toLowerCase());
-  //   for (const ut of recipe.ustensils) {
-  //     utensils.add(ut.toLowerCase());
-  //   }
-  // }
-
   for (const recipe of recipes) {
     for (const ing of recipe.ingredients) {
-      ingredients.add(ing.ingredient);
+      ingredients.add(ing.ingredient.toLowerCase());
     }
-    appliances.add(recipe.appliance);
+    appliances.add(recipe.appliance.toLowerCase());
     for (const ut of recipe.ustensils) {
-      utensils.add(ut);
+      utensils.add(ut.toLowerCase());
     }
   }
+
+  // for (const recipe of recipes) {
+  //   for (const ing of recipe.ingredients) {
+  //     ingredients.add(ing.ingredient);
+  //   }
+  //   appliances.add(recipe.appliance);
+  //   for (const ut of recipe.ustensils) {
+  //     utensils.add(ut);
+  //   }
+  // }
 
   return {
     ingredients: Array.from(ingredients),
