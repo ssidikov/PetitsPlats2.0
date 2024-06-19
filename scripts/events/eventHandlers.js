@@ -16,7 +16,7 @@ export function addSearchEventHandler(
   searchInput.addEventListener("input", () => {
     const keyword = searchInput.value.trim().toLowerCase();
 
-    // filtering and sorting of recipes by keyword
+    // Filter recipes based on the search keyword and selected options
     const filteredRecipes = filterRecipes(
       recipes,
       keyword,

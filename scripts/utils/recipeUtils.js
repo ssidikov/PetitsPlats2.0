@@ -52,36 +52,6 @@ export function filterRecipes(
       filteredRecipes.push(recipe);
     }
   }
-
-  //Bubble sort implementation for sorting filtered recipes
-  // for (let i = 0; i < filteredRecipes.length - 1; i++) {
-  //   for (let j = 0; j < filteredRecipes.length - 1 - i; j++) {
-  //     const a = filteredRecipes[j];
-  //     const b = filteredRecipes[j + 1];
-
-  //     const aContainsKeyword =
-  //       a.name.toLowerCase().includes(keyword.toLowerCase()) ||
-  //       a.description.toLowerCase().includes(keyword.toLowerCase()) ||
-  //       a.appliance.toLowerCase().includes(keyword.toLowerCase()) ||
-  //       a.ustensils.some((ut) => ut.toLowerCase().includes(keyword.toLowerCase())) ||
-  //       a.ingredients.some((ing) => ing.ingredient.toLowerCase().includes(keyword.toLowerCase()));
-
-  //     const bContainsKeyword =
-  //       b.name.toLowerCase().includes(keyword.toLowerCase()) ||
-  //       b.description.toLowerCase().includes(keyword.toLowerCase()) ||
-  //       b.appliance.toLowerCase().includes(keyword.toLowerCase()) ||
-  //       b.ustensils.some((ut) => ut.toLowerCase().includes(keyword.toLowerCase())) ||
-  //       b.ingredients.some((ing) => ing.ingredient.toLowerCase().includes(keyword.toLowerCase()));
-
-  //     if (aContainsKeyword && !bContainsKeyword) {
-  //       // Swap a and b
-  //       const temp = filteredRecipes[j];
-  //       filteredRecipes[j] = filteredRecipes[j + 1];
-  //       filteredRecipes[j + 1] = temp;
-  //     }
-  //   }
-  // }
-
   return filteredRecipes;
 }
 
