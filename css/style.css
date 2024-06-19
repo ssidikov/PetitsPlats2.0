@@ -94,6 +94,7 @@ img, svg {
 }
 .filter-bar {
   margin: 20px 0;
+  width: 50%;
 }
 .filter-options {
   width: 30%;
@@ -123,9 +124,6 @@ img, svg {
   background-color: #ffc107 !important;
   color: var(--secondary-color);
 }
-.filter ::first-letter {
-  text-transform: uppercase;
-}
 .filter .selected-options {
   display: flex;
   flex-wrap: wrap;
@@ -148,9 +146,6 @@ img, svg {
 .filter .selected-option i {
   margin-left: 10px;
   cursor: pointer;
-}
-.filter-bar {
-  width: 50%;
 }
 .filter-number {
   float: right;
@@ -181,74 +176,27 @@ img, svg {
   background-color: #ffc107 !important;
 }
 
-.card-img-top {
-  height: 253px;
-  -o-object-fit: cover;
-     object-fit: cover;
+.recipes {
+  margin-bottom: 7vh;
 }
-.card-body {
-  padding: 32px 25px;
-}
-.card-title {
+.recipes-cards__error-message {
+  display: none;
+  color: var(--secondary-color);
   font-family: Anton, sans-serif;
-  font-size: clamp(0.875rem, 0.8036rem + 0.3571vw, 1.125rem);
-  font-weight: 400;
-  margin-bottom: 29px;
-}
-.card-description__name {
-  color: var(--tertiary-color);
-  font-family: Manrope;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 1.08px;
-  text-transform: uppercase;
-}
-.card-description__text {
-  color: var(--secondary-color);
-  font-family: Manrope;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  height: 76px;
-}
-.card-description__list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: start;
-  padding: 0;
-}
-.card-description__item-ingredients {
-  color: var(--secondary-color);
-  font-family: Manrope;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-.card-description__item-quantity {
-  color: var(--tertiary-color);
-  font-family: Manrope;
-  font-size: 14px;
-  font-style: normal;
+  font-size: 21px;
   font-weight: 400;
   line-height: normal;
 }
-
 .recipes-card {
   margin-bottom: 4.5vh;
 }
-.recipes-card .recipe-card {
+.recipes .recipe-card {
   height: 731px;
   position: relative;
   border: none;
   box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
 }
-.recipes-card .recipe-card__time {
+.recipes .recipe-card__time {
   position: absolute;
   top: 21px;
   right: 22px;
@@ -262,27 +210,60 @@ img, svg {
   padding: 5px 15px;
   border-radius: 14px;
 }
-
-.filter-bar {
-  margin: 20px 0;
+.recipes .recipe-card .card-img-top {
+  height: 253px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
-
-.selected-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 8px;
+.recipes .recipe-card .card-body {
+  padding: 32px 25px;
 }
-
-.selected-option {
-  background-color: #ffc107;
-  padding: 4px 8px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  margin: 2px;
+.recipes .recipe-card .card-title {
+  font-family: Anton, sans-serif;
+  font-size: clamp(0.875rem, 0.8036rem + 0.3571vw, 1.125rem);
+  font-weight: 400;
+  margin-bottom: 29px;
 }
-.selected-option i {
-  margin-left: 4px;
-  cursor: pointer;
+.recipes .recipe-card .card-description__name {
+  color: var(--tertiary-color);
+  font-family: Manrope;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1.08px;
+  text-transform: uppercase;
+}
+.recipes .recipe-card .card-description__text {
+  color: var(--secondary-color);
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 76px;
+}
+.recipes .recipe-card .card-description__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  padding: 0;
+}
+.recipes .recipe-card .card-description__item-ingredients {
+  color: var(--secondary-color);
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.recipes .recipe-card .card-description__item-quantity {
+  color: var(--tertiary-color);
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }/*# sourceMappingURL=style.css.map */

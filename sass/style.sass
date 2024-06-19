@@ -83,6 +83,7 @@ img, svg
 
   &-bar
     margin: 20px 0
+    width: 50%
 
   &-options
     width: 30%
@@ -135,9 +136,6 @@ img, svg
       margin-left: 10px
       cursor: pointer
 
-  &-bar
-    width: 50%
-
   &-number
     float: right
     color: var(--secondary-color)
@@ -166,62 +164,17 @@ img, svg
     .dropdown-menu li:hover
       background-color: #ffc107 !important
 
-.card
-  &-img-top
-    height: 253px
-    object-fit: cover
-
-  &-body
-    padding: 32px 25px
-
-  &-title
+.recipes
+  margin-bottom: 7vh
+  &-cards__error-message
+    display: none
+    color: var(--secondary-color)
     font-family: Anton, sans-serif
-    font-size: clamp(0.875rem, 0.8036rem + 0.3571vw, 1.125rem)
+    font-size: 21px
     font-weight: 400
-    margin-bottom: 29px
-
-  &-description
-    &__name
-      color: var(--tertiary-color)
-      font-family: Manrope
-      font-size: 12px
-      font-style: normal
-      font-weight: 700
-      line-height: normal
-      letter-spacing: 1.08px
-      text-transform: uppercase
-    &__text
-      color: var(--secondary-color)
-      font-family: Manrope
-      font-size: 14px
-      font-style: normal
-      font-weight: 400
-      line-height: normal
-      text-overflow: ellipsis
-      overflow: hidden
-      height: 76px
-    &__list
-      display: grid
-      grid-template-columns: 1fr 1fr
-      align-items: start
-      padding: 0
-    &__item-ingredients
-      color: var(--secondary-color)
-      font-family: Manrope
-      font-size: 14px
-      font-style: normal
-      font-weight: 500
-      line-height: normal
-    &__item-quantity
-      color: var(--tertiary-color)
-      font-family: Manrope
-      font-size: 14px
-      font-style: normal
-      font-weight: 400
-      line-height: normal
-
-.recipes-card
-  margin-bottom: 4.5vh
+    line-height: normal
+  &-card
+    margin-bottom: 4.5vh
   .recipe-card
     height: 731px
     position: relative
@@ -241,39 +194,67 @@ img, svg
       padding: 5px 15px
       border-radius: 14px
 
-.filter-bar
-  margin: 20px 0
+    .card
+      &-img-top
+        height: 253px
+        object-fit: cover
 
-.selected-options
-  display: flex
-  flex-wrap: wrap
-  gap: 8px
-  margin-top: 8px
+      &-body
+        padding: 32px 25px
 
-.selected-option
-  background-color: #ffc107
-  padding: 4px 8px
-  border-radius: 4px
-  display: flex
-  align-items: center
-  margin: 2px
+      &-title
+        font-family: Anton, sans-serif
+        font-size: clamp(0.875rem, 0.8036rem + 0.3571vw, 1.125rem)
+        font-weight: 400
+        margin-bottom: 29px
 
-  & i
-    margin-left: 4px
-    cursor: pointer
+      &-description
+        &__name
+          color: var(--tertiary-color)
+          font-family: Manrope
+          font-size: 12px
+          font-style: normal
+          font-weight: 700
+          line-height: normal
+          letter-spacing: 1.08px
+          text-transform: uppercase
+        &__text
+          color: var(--secondary-color)
+          font-family: Manrope
+          font-size: 14px
+          font-style: normal
+          font-weight: 400
+          line-height: normal
+          text-overflow: ellipsis
+          overflow: hidden
+          height: 76px
+        &__list
+          display: grid
+          grid-template-columns: 1fr 1fr
+          align-items: start
+          padding: 0
+        &__item-ingredients
+          color: var(--secondary-color)
+          font-family: Manrope
+          font-size: 14px
+          font-style: normal
+          font-weight: 500
+          line-height: normal
+        &__item-quantity
+          color: var(--tertiary-color)
+          font-family: Manrope
+          font-size: 14px
+          font-style: normal
+          font-weight: 400
+          line-height: normal
 
-.dropdown-item
-  display: flex
-  justify-content: space-between
-  align-items: center
+  // & .remove-option
+  //   display: none
+  //   margin-left: 10px
+  //   cursor: pointer
 
-  & .remove-option
-    display: none
-    margin-left: 10px
-    cursor: pointer
+  // &.selected
+  //   background-color: yellow
 
-  &.selected
-    background-color: yellow
-
-  &.selected .remove-option
-    display: inline
+  // &.selected .remove-option
+  //   display: inline

@@ -24,7 +24,7 @@ export function addSearchEventHandler(
       selectedAppliances,
       selectedUtensils
     );
-    displayRecipes(filteredRecipes);
+    displayRecipes(filteredRecipes, keyword);
     updateRecipeCount(filteredRecipes.length);
     updateDropdownOptions(filteredRecipes);
   });
@@ -113,17 +113,29 @@ function updateSelectedOptions(
     selectedAppliances,
     selectedUtensils
   );
-  displayRecipes(filteredRecipes);
+  displayRecipes(filteredRecipes, keyword);
   updateRecipeCount(filteredRecipes.length);
   updateDropdownOptions(filteredRecipes);
 }
 
 // Display recipes cards
-export function displayRecipes(recipes) {
+export function displayRecipes(recipes, keyword) {
   const recipeCards = document.querySelector(".recipes-cards");
+  const errorMessage = document.querySelector(".recipes-cards__error-message");
+
   recipeCards.innerHTML = "";
-  for (const recipe of recipes) {
-    recipeCards.innerHTML += createRecipeCard(recipe).outerHTML;
+  if (recipes.length === 0) {
+    if (errorMessage) {
+      errorMessage.textContent = `Aucune recette ne contient ‘${keyword}’ vous pouvez chercher «tarte aux pommes», «poisson», etc.`;
+      errorMessage.style.display = "block";
+    }
+  } else {
+    if (errorMessage) {
+      errorMessage.style.display = "none";
+    }
+    for (const recipe of recipes) {
+      recipeCards.innerHTML += createRecipeCard(recipe).outerHTML;
+    }
   }
 }
 
