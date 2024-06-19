@@ -22,6 +22,7 @@ export function filterRecipes(
   for (let i = 0; i < recipes.length; i++) {
     const recipe = recipes[i];
 
+    // Check if the recipe matches the keyword
     const matchesKeyword =
       keyword === "" ||
       recipe.name.toLowerCase().includes(keyword.toLowerCase()) ||
@@ -31,23 +32,23 @@ export function filterRecipes(
       recipe.ingredients.some((ing) =>
         ing.ingredient.toLowerCase().includes(keyword.toLowerCase())
       );
-
+    // Check if the recipe matches the selected ingredients
     const matchesIngredients =
       selectedIngredients.length === 0 ||
       selectedIngredients.every((selected) =>
         recipe.ingredients.some((ing) => ing.ingredient.toLowerCase() === selected.toLowerCase())
       );
-
+    // Check if the recipe matches the selected appliance
     const matchesAppliances =
       selectedAppliances.length === 0 ||
       selectedAppliances.includes(recipe.appliance.toLowerCase());
-
+    // Check if the recipe matches the selected utensils
     const matchesUtensils =
       selectedUtensils.length === 0 ||
       selectedUtensils.every((selected) =>
         recipe.ustensils.some((ut) => ut.toLowerCase() === selected.toLowerCase())
       );
-
+    // If the recipe matches all the criteria, add it to the filtered recipes
     if (matchesKeyword && matchesIngredients && matchesAppliances && matchesUtensils) {
       filteredRecipes.push(recipe);
     }
@@ -94,16 +95,6 @@ export function getUniqueOptions(recipes) {
       utensils.add(ut.toLowerCase());
     }
   }
-
-  // for (const recipe of recipes) {
-  //   for (const ing of recipe.ingredients) {
-  //     ingredients.add(ing.ingredient);
-  //   }
-  //   appliances.add(recipe.appliance);
-  //   for (const ut of recipe.ustensils) {
-  //     utensils.add(ut);
-  //   }
-  // }
 
   return {
     ingredients: Array.from(ingredients),
