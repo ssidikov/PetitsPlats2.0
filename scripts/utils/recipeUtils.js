@@ -1,5 +1,6 @@
-// Description: This file contains utility functions for recipes.
+// Description: This file contains filterRecipes function that filters recipes based on the search keyword and selected options.
 
+// Filtering Recipes Using Functional Programming
 export function filterRecipes(
   recipes,
   keyword,
@@ -7,8 +8,7 @@ export function filterRecipes(
   selectedAppliances,
   selectedUtensils
 ) {
-  // Filter recipes by keyword, ingredients, appliances, and utensils
-  // If the length of the keyword is less than 3, display all recipes without filtering
+  // If the length of the keyword is less than 3 and no filters are selected, return all recipes
   if (
     keyword.length < 3 &&
     selectedIngredients.length === 0 &&
@@ -18,87 +18,37 @@ export function filterRecipes(
     return recipes;
   }
 
-  let filteredRecipes = [];
-  for (let i = 0; i < recipes.length; i++) {
-    const recipe = recipes[i];
+  return recipes.filter((recipe) => {
+    const { name, description, appliance, ustensils, ingredients } = recipe;
 
     // Check if the recipe matches the keyword
     const matchesKeyword =
       keyword === "" ||
-      recipe.name.toLowerCase().includes(keyword.toLowerCase()) ||
-      recipe.description.toLowerCase().includes(keyword.toLowerCase()) ||
-      recipe.appliance.toLowerCase().includes(keyword.toLowerCase()) ||
-      recipe.ustensils.some((ut) => ut.toLowerCase().includes(keyword.toLowerCase())) ||
-      recipe.ingredients.some((ing) =>
-        ing.ingredient.toLowerCase().includes(keyword.toLowerCase())
-      );
+      name.toLowerCase().includes(keyword.toLowerCase()) ||
+      description.toLowerCase().includes(keyword.toLowerCase()) ||
+      appliance.toLowerCase().includes(keyword.toLowerCase()) ||
+      ustensils.some((ut) => ut.toLowerCase().includes(keyword.toLowerCase())) ||
+      ingredients.some((ing) => ing.ingredient.toLowerCase().includes(keyword.toLowerCase()));
+
     // Check if the recipe matches the selected ingredients
     const matchesIngredients =
       selectedIngredients.length === 0 ||
       selectedIngredients.every((selected) =>
-        recipe.ingredients.some((ing) => ing.ingredient.toLowerCase() === selected.toLowerCase())
+        ingredients.some((ing) => ing.ingredient.toLowerCase() === selected.toLowerCase())
       );
+
     // Check if the recipe matches the selected appliance
     const matchesAppliances =
-      selectedAppliances.length === 0 ||
-      selectedAppliances.includes(recipe.appliance.toLowerCase());
+      selectedAppliances.length === 0 || selectedAppliances.includes(appliance.toLowerCase());
+
     // Check if the recipe matches the selected utensils
     const matchesUtensils =
       selectedUtensils.length === 0 ||
       selectedUtensils.every((selected) =>
-        recipe.ustensils.some((ut) => ut.toLowerCase() === selected.toLowerCase())
+        ustensils.some((ut) => ut.toLowerCase() === selected.toLowerCase())
       );
-    // If the recipe matches all the criteria, add it to the filtered recipes
-    if (matchesKeyword && matchesIngredients && matchesAppliances && matchesUtensils) {
-      filteredRecipes.push(recipe);
-    }
-  }
-  return filteredRecipes;
-}
 
-export function generateOptions(items) {
-  const uniqueItems = Array.from(new Set(items)); // Remove duplicates using a Set
-  let options = "";
-  for (let i = 0; i < uniqueItems.length; i++) {
-    const item = uniqueItems[i];
-    options += `<li><a class="dropdown-item" href="#">${item}</a></li>`;
-  }
-  return options;
-}
-
-export function appendDropdownOptions(selector, options) {
-  const element = document.getElementById(selector);
-  if (element) {
-    const inputElement = element.querySelector("input");
-
-    // Clean all elements after search input
-    while (inputElement.nextSibling) {
-      element.removeChild(inputElement.nextSibling);
-    }
-
-    // Add new options after the search input
-    inputElement.insertAdjacentHTML("afterend", options);
-  }
-}
-
-export function getUniqueOptions(recipes) {
-  const ingredients = new Set();
-  const appliances = new Set();
-  const utensils = new Set();
-
-  for (const recipe of recipes) {
-    for (const ing of recipe.ingredients) {
-      ingredients.add(ing.ingredient.toLowerCase());
-    }
-    appliances.add(recipe.appliance.toLowerCase());
-    for (const ut of recipe.ustensils) {
-      utensils.add(ut.toLowerCase());
-    }
-  }
-
-  return {
-    ingredients: Array.from(ingredients),
-    appliances: Array.from(appliances),
-    utensils: Array.from(utensils),
-  };
+    // Return true if all criteria are matched
+    return matchesKeyword && matchesIngredients && matchesAppliances && matchesUtensils;
+  });
 }
