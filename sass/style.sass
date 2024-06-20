@@ -51,6 +51,7 @@ img, svg
       height: 5vh
       align-items: center
       border: none
+      position: relative
 
       &-input
         outline: none
@@ -63,16 +64,22 @@ img, svg
         overflow: hidden
         text-overflow: ellipsis
         white-space: nowrap
+        width: calc(100% - 120px) // Adjust width to accommodate buttons
 
-      &-button
+      &-button, .clear-button
         background-color: var(--secondary-color)
         color: var(--white-color)
         border-radius: 10px
         border: none
         width: 51px
         height: 52px
-        left: -65px
         top: 0
+        left: -60px
+
+      .clear-button
+        background-color: var(--tertiary-color)
+        color: var(--white-color)
+        margin-right: 10px
 
 .search-input:not(:placeholder-shown) + .remove-btn
   display: inline
@@ -234,7 +241,7 @@ img, svg
           align-items: start
           padding: 0
         &__item-ingredients
-          color: var(--secondary-color)
+          color: var (--secondary-color)
           font-family: Manrope
           font-size: 14px
           font-style: normal
@@ -247,14 +254,3 @@ img, svg
           font-style: normal
           font-weight: 400
           line-height: normal
-
-  // & .remove-option
-  //   display: none
-  //   margin-left: 10px
-  //   cursor: pointer
-
-  // &.selected
-  //   background-color: yellow
-
-  // &.selected .remove-option
-  //   display: inline

@@ -23,10 +23,13 @@
       </nav>
       <div class="hero col container-fluid text-center">
         <h1 class="hero-title">CHERCHEZ PARMI PLUS DE 1500 RECETTES <br> DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES</h1>
-        <form class="hero-form row">
+        <form class="hero-form row justify-content-center align-items-center">
           <input type="search" class="hero-form-input col-8 border-0" aria-label="search"
             placeholder="Rechercher une recette, un ingrédient, ..." maxlength="30">
-          <button class="hero-form-button position-relative" type="submit">
+          <button type="button" class="clear-button btn position-relative" aria-label="clear">
+            <i class="bi bi-x"></i>
+          </button>
+          <button class="hero-form-button" type="submit">
             <i class="bi bi-search"></i>
           </button>
         </form>

@@ -79,15 +79,11 @@ function updateSelectedOptions(
   updateDropdownOptions
 ) {
   const container = document.getElementById(containerId);
-  container.innerHTML = "";
-  for (let i = 0; i < selectedArray.length; i++) {
-    const option = selectedArray[i];
-    container.innerHTML += `<div class="selected-option">${option} <i class="bi bi-x"></i></div>`;
-  }
+  container.innerHTML = selectedArray
+    .map((option) => `<div class="selected-option">${option} <i class="bi bi-x"></i></div>`)
+    .join("");
 
-  const removeButtons = container.querySelectorAll(".selected-option i");
-  for (let i = 0; i < removeButtons.length; i++) {
-    const button = removeButtons[i];
+  container.querySelectorAll(".selected-option i").forEach((button, i) => {
     button.addEventListener("click", function () {
       selectedArray.splice(i, 1);
       updateSelectedOptions(
@@ -103,7 +99,7 @@ function updateSelectedOptions(
         updateDropdownOptions
       );
     });
-  }
+  });
 
   const keyword = searchInput.value.trim().toLowerCase();
   const filteredRecipes = filterRecipes(
@@ -133,17 +129,12 @@ export function displayRecipes(recipes, keyword) {
     if (errorMessage) {
       errorMessage.style.display = "none";
     }
-    for (const recipe of recipes) {
-      recipeCards.innerHTML += createRecipeCard(recipe).outerHTML;
-    }
+    recipeCards.innerHTML = recipes.map((recipe) => createRecipeCard(recipe).outerHTML).join("");
   }
 }
 
 export function updateRecipeCount(count) {
   const filterNumberElement = document.querySelector(".filter-number");
-  if (count === 0) {
-    filterNumberElement.textContent = "Aucune recette trouvée pour votre recherche";
-  } else {
-    filterNumberElement.textContent = `${count} recettes`;
-  }
+  filterNumberElement.textContent =
+    count === 0 ? "Aucune recette trouvée pour votre recherche" : `${count} recettes`;
 }

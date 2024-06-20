@@ -56,6 +56,7 @@ img, svg {
   height: 5vh;
   align-items: center;
   border: none;
+  position: relative;
 }
 .header .hero-form-input {
   outline: none;
@@ -68,16 +69,22 @@ img, svg {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  width: calc(100% - 120px);
 }
-.header .hero-form-button {
+.header .hero-form-button, .header .hero-form .clear-button {
   background-color: var(--secondary-color);
   color: var(--white-color);
   border-radius: 10px;
   border: none;
   width: 51px;
   height: 52px;
-  left: -65px;
   top: 0;
+  left: -60px;
+}
+.header .hero-form .clear-button {
+  background-color: var(--tertiary-color);
+  color: var(--white-color);
+  margin-right: 10px;
 }
 
 .search-input:not(:-moz-placeholder-shown) + .remove-btn {
@@ -252,7 +259,7 @@ img, svg {
   padding: 0;
 }
 .recipes .recipe-card .card-description__item-ingredients {
-  color: var(--secondary-color);
+  color: var --secondary-color;
   font-family: Manrope;
   font-size: 14px;
   font-style: normal;

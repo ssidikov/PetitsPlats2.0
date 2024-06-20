@@ -40,13 +40,10 @@ export function initDropdowns() {
 }
 
 export function generateOptions(items) {
-  const uniqueItems = Array.from(new Set(items)); // Remove duplicates using a Set
-  let options = "";
-  for (let i = 0; i < uniqueItems.length; i++) {
-    const item = uniqueItems[i];
-    options += `<li><a class="dropdown-item" href="#">${item}</a></li>`;
-  }
-  return options;
+  const uniqueItems = [...new Set(items)];
+  return uniqueItems
+    .map((item) => `<li><a class="dropdown-item" href="#">${item}</a></li>`)
+    .join("");
 }
 
 export function appendDropdownOptions(selector, options) {
@@ -54,7 +51,7 @@ export function appendDropdownOptions(selector, options) {
   if (element) {
     const inputElement = element.querySelector("input");
 
-    // Clean all elements after search input
+    // Remove all elements after search input
     while (inputElement.nextSibling) {
       element.removeChild(inputElement.nextSibling);
     }
@@ -69,19 +66,16 @@ export function getUniqueOptions(recipes) {
   const appliances = new Set();
   const utensils = new Set();
 
-  for (const recipe of recipes) {
-    for (const ing of recipe.ingredients) {
-      ingredients.add(ing.ingredient.toLowerCase());
-    }
+  recipes.forEach((recipe) => {
+    recipe.ingredients.forEach((ing) => ingredients.add(ing.ingredient.toLowerCase()));
     appliances.add(recipe.appliance.toLowerCase());
-    for (const ut of recipe.ustensils) {
-      utensils.add(ut.toLowerCase());
-    }
-  }
+    recipe.ustensils.forEach((ut) => utensils.add(ut.toLowerCase()));
+  });
 
+  // Return unique options as arrays
   return {
-    ingredients: Array.from(ingredients),
-    appliances: Array.from(appliances),
-    utensils: Array.from(utensils),
+    ingredients: [...ingredients],
+    appliances: [...appliances],
+    utensils: [...utensils],
   };
 }

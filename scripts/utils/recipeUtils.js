@@ -1,4 +1,4 @@
-// Description: This file contains filterRecipes function that filters recipes based on the search keyword and selected options.
+// Description: This file contains utility functions for recipes.
 
 // Filtering Recipes Using Functional Programming
 export function filterRecipes(
@@ -8,27 +8,27 @@ export function filterRecipes(
   selectedAppliances,
   selectedUtensils
 ) {
-  // If the length of the keyword is less than 3 and no filters are selected, return all recipes
-  if (
+  const noFiltersApplied =
     keyword.length < 3 &&
     selectedIngredients.length === 0 &&
     selectedAppliances.length === 0 &&
-    selectedUtensils.length === 0
-  ) {
+    selectedUtensils.length === 0;
+
+  if (noFiltersApplied) {
     return recipes;
   }
 
-  return recipes.filter((recipe) => {
-    const { name, description, appliance, ustensils, ingredients } = recipe;
+  const keywordLower = keyword.toLowerCase();
 
+  return recipes.filter(({ name, description, appliance, ustensils, ingredients }) => {
     // Check if the recipe matches the keyword
     const matchesKeyword =
       keyword === "" ||
-      name.toLowerCase().includes(keyword.toLowerCase()) ||
-      description.toLowerCase().includes(keyword.toLowerCase()) ||
-      appliance.toLowerCase().includes(keyword.toLowerCase()) ||
-      ustensils.some((ut) => ut.toLowerCase().includes(keyword.toLowerCase())) ||
-      ingredients.some((ing) => ing.ingredient.toLowerCase().includes(keyword.toLowerCase()));
+      name.toLowerCase().includes(keywordLower) ||
+      description.toLowerCase().includes(keywordLower) ||
+      appliance.toLowerCase().includes(keywordLower) ||
+      ustensils.some((ut) => ut.toLowerCase().includes(keywordLower)) ||
+      ingredients.some((ing) => ing.ingredient.toLowerCase().includes(keywordLower));
 
     // Check if the recipe matches the selected ingredients
     const matchesIngredients =
