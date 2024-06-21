@@ -39,9 +39,14 @@ export function initDropdowns() {
   });
 }
 
+function sortAlphabetically(array) {
+  return array.sort((a, b) => a.localeCompare(b));
+}
+
 export function generateOptions(items) {
   const uniqueItems = [...new Set(items)];
-  return uniqueItems
+  const sortedItems = sortAlphabetically(uniqueItems);
+  return sortedItems
     .map((item) => `<li><a class="dropdown-item" href="#">${item}</a></li>`)
     .join("");
 }

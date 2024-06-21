@@ -125,6 +125,9 @@ img, svg {
   background-color: #ffc107 !important;
   color: var(--secondary-color);
 }
+.filter ::first-letter {
+  text-transform: uppercase;
+}
 .filter .selected-options {
   display: flex;
   flex-wrap: wrap;
