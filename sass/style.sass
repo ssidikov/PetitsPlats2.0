@@ -36,6 +36,10 @@ img, svg
   background-position: center
 
   .hero
+    justify-content: center
+    align-items: center
+    display: flex
+    flex-direction: column
     margin-top: 12vh
     margin-bottom: 9.5vh
 
@@ -109,6 +113,9 @@ img, svg
     padding: 9px 16px
     font-size: 14px
     font-weight: 400
+    // max-width: 210px
+    white-space: normal
+    word-wrap: break-word
     &:hover
       background-color: #ffc107 !important
       color: var(--secondary-color)
@@ -153,6 +160,8 @@ img, svg
     background: var(--white-color)
     margin-bottom: 10px
     position: relative
+  .form-control, li
+    max-width: 210px
 
     .ingredients-list__option
       width: 1925px

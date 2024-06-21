@@ -41,6 +41,10 @@ img, svg {
   background-position: center;
 }
 .header .hero {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   margin-top: 12vh;
   margin-bottom: 9.5vh;
 }
@@ -120,6 +124,8 @@ img, svg {
   padding: 9px 16px;
   font-size: 14px;
   font-weight: 400;
+  white-space: normal;
+  word-wrap: break-word;
 }
 .filter .dropdown-item:hover {
   background-color: #ffc107 !important;
@@ -168,15 +174,18 @@ img, svg {
   margin-bottom: 10px;
   position: relative;
 }
-.filter .form-control .ingredients-list__option {
+.filter .form-control, .filter li {
+  max-width: 210px;
+}
+.filter .form-control .ingredients-list__option, .filter li .ingredients-list__option {
   width: 1925px;
   height: 37px;
 }
-.filter .form-control .dropdown-menu {
+.filter .form-control .dropdown-menu, .filter li .dropdown-menu {
   max-height: 200px;
   overflow-y: auto;
 }
-.filter .form-control .dropdown-menu li:hover {
+.filter .form-control .dropdown-menu li:hover, .filter li .dropdown-menu li:hover {
   background-color: #ffc107 !important;
 }
 

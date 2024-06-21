@@ -21,9 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const selectedAppliances = [];
   const selectedUtensils = [];
 
-  //
-  // const clearButton = document.querySelector(".clear-button");
-
   function updateDropdownOptions(filteredRecipes) {
     const { ingredients, appliances, utensils } = getUniqueOptions(filteredRecipes);
 
@@ -32,12 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     appendDropdownOptions("utensils-list", generateOptions(utensils));
   }
 
-  // clearButton.addEventListener("click", () => {
-  //   searchInput.value = "";
-  //   displayRecipes(recipes);
-  //   updateRecipeCount(recipes.length);
-  //   updateDropdownOptions(recipes);
-  // });
   const searchInput = document.querySelector(".hero-form-input");
   addSearchEventHandler(
     searchInput,
