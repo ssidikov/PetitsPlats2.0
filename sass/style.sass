@@ -16,6 +16,7 @@ ul
   --primary-color: #ffd15b
   --secondary-color: #1b1b1b
   --tertiary-color: #7a7a7a
+  --light-grey: #c6c6c6
   --white-color: #fff
   --background-color: #ededed
 
@@ -88,32 +89,59 @@ img, svg
 
   &-bar
     margin: 20px 0
-    width: 50%
+    width: 60%
 
   &-options
-    width: 30%
+    // width: 30%
+    min-width: 195px
+    position: relative
+    display: inline-block
+    // background-color: #fff
+    // width: 195px
+    // border-radius: 10px
+    margin: 20px 30px 20px 0
+    // font-family: var(--secondary-font-family)
+    height: fit-content
+    // border-radius: 11px
 
   &-button
-    display: inline-flex
+    // display: inline-flex
     padding: 17px 16px
     align-items: center
     gap: 63px
     border-radius: 11px
     background: var(--white-color)
-
+    position: relative
+    display: inline-block
+    border: none
+    // font-size: 16px
+    // font-weight: 500
+    // width: 100%
+    min-width: 195px
+    outline: none
     &:hover
-      background-color: #ffd15bce
+      background: var(--white-color)
+  .open
+    border-radius: 11px 11px 0 0
 
   .dropdown-menu
-    max-height: 300px
+    max-height: 215px
+    // overflow-y: auto
+    // display: none
+    // position: relative
     overflow-y: auto
+    max-width: 195px
+    z-index: 1
+    background-color: #fff
+    border-radius: 0 0 10px 10px
+    border: none
 
   .dropdown-item
     font-family: Manrope
     padding: 9px 16px
     font-size: 14px
     font-weight: 400
-    // max-width: 210px
+    min-width: 210px
     white-space: normal
     word-wrap: break-word
     &:hover
@@ -153,23 +181,45 @@ img, svg
     line-height: normal
 
   .form-control
-    width: 100%
-    padding: 17px 16px
-    align-items: center
-    border-radius: 11px
-    background: var(--white-color)
-    margin-bottom: 10px
+    // width: 100%
+    // padding: 17px 16px
+    // align-items: center
+    // border-radius: 11px
+    // background: var(--white-color)
+    // margin-bottom: 10px
+    // position: relative
+    margin: 0 15px
+    height: 36px
+    // width: 122px
+    width: 85%
+    width: 163px
+    height: 36px
+    border: 1px solid var(--light-grey)
+    border-radius: 5px
+    height: 36px
+    // border: 1px solid var(--light-grey)
     position: relative
-  .form-control, li
-    max-width: 210px
+    padding-right: 30px
+    padding-left: 10px
+
+  // .form-control, li
+  //   max-width: 210px
 
     .ingredients-list__option
       width: 1925px
       height: 37px
 
     .dropdown-menu
-      max-height: 200px
+      // max-height: 200px
+      // overflow-y: auto
+      padding: 15px 0
+      margin-bottom: 0
+      flex-wrap: wrap
+      max-height: 60vh
+      background-color: #fff
       overflow-y: auto
+      box-shadow: 0 10px 16px -6px rgba(0, 0, 0, .2)
+      border-radius: 0 0 10px 10px
 
     .dropdown-menu li:hover
       background-color: #ffc107 !important
@@ -264,3 +314,19 @@ input[type="search"]::-webkit-search-cancel-button
   width: 24px
   cursor: pointer
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23777'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>")
+
+  // .dropdown-toggle:after
+  //   font-family: FontAwesome
+  //   content: "\f107"
+  //   padding-left: 4px
+
+// .selected-option
+//   background-color: yellow
+//   padding: 0.2em 0.5em
+//   border-radius: 0.2em
+//   display: inline-block
+//   margin: 0.2em
+
+//   & .btn-close
+//     margin-left: 0.5em
+//     font-size: 0.8em

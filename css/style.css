@@ -18,6 +18,7 @@ ul {
   --primary-color: #ffd15b;
   --secondary-color: #1b1b1b;
   --tertiary-color: #7a7a7a;
+  --light-grey: #c6c6c6;
   --white-color: #fff;
   --background-color: #ededed;
 }
@@ -99,31 +100,49 @@ img, svg {
 }
 .filter-bar {
   margin: 20px 0;
-  width: 50%;
+  width: 60%;
 }
 .filter-options {
-  width: 30%;
+  min-width: 195px;
+  position: relative;
+  display: inline-block;
+  margin: 20px 30px 20px 0;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 .filter-button {
-  display: inline-flex;
   padding: 17px 16px;
   align-items: center;
   gap: 63px;
   border-radius: 11px;
   background: var(--white-color);
+  position: relative;
+  display: inline-block;
+  border: none;
+  min-width: 195px;
+  outline: none;
 }
 .filter-button:hover {
-  background-color: rgba(255, 209, 91, 0.8078431373);
+  background: var(--white-color);
+}
+.filter .open {
+  border-radius: 11px 11px 0 0;
 }
 .filter .dropdown-menu {
-  max-height: 300px;
+  max-height: 215px;
   overflow-y: auto;
+  max-width: 195px;
+  z-index: 1;
+  background-color: #fff;
+  border-radius: 0 0 10px 10px;
+  border: none;
 }
 .filter .dropdown-item {
   font-family: Manrope;
   padding: 9px 16px;
   font-size: 14px;
   font-weight: 400;
+  min-width: 210px;
   white-space: normal;
   word-wrap: break-word;
 }
@@ -166,27 +185,17 @@ img, svg {
   line-height: normal;
 }
 .filter .form-control {
-  width: 100%;
-  padding: 17px 16px;
-  align-items: center;
-  border-radius: 11px;
-  background: var(--white-color);
-  margin-bottom: 10px;
+  margin: 0 15px;
+  height: 36px;
+  width: 85%;
+  width: 163px;
+  height: 36px;
+  border: 1px solid var(--light-grey);
+  border-radius: 5px;
+  height: 36px;
   position: relative;
-}
-.filter .form-control, .filter li {
-  max-width: 210px;
-}
-.filter .form-control .ingredients-list__option, .filter li .ingredients-list__option {
-  width: 1925px;
-  height: 37px;
-}
-.filter .form-control .dropdown-menu, .filter li .dropdown-menu {
-  max-height: 200px;
-  overflow-y: auto;
-}
-.filter .form-control .dropdown-menu li:hover, .filter li .dropdown-menu li:hover {
-  background-color: #ffc107 !important;
+  padding-right: 30px;
+  padding-left: 10px;
 }
 
 .recipes {

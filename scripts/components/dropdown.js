@@ -1,5 +1,3 @@
-// scripts/components/dropdown.js
-
 export function initDropdowns() {
   const dropdownButtons = document.querySelectorAll(".dropdown-toggle");
 
@@ -9,19 +7,38 @@ export function initDropdowns() {
 
       if (dropdownMenu.classList.contains("show")) {
         dropdownMenu.classList.remove("show");
+        button.classList.remove("open");
         button.setAttribute("aria-expanded", "false");
       } else {
-        // Close all other dropdown menus
+        // Close all other dropdown menus and remove 'open' class from buttons
         document.querySelectorAll(".dropdown-menu").forEach((menu) => {
           menu.classList.remove("show");
         });
         document.querySelectorAll(".dropdown-toggle").forEach((btn) => {
+          btn.classList.remove("open");
           btn.setAttribute("aria-expanded", "false");
         });
 
         // Open the clicked dropdown menu
         dropdownMenu.classList.add("show");
+        button.classList.add("open");
         button.setAttribute("aria-expanded", "true");
+
+        // Add event listener to the input for searching options
+        const input = dropdownMenu.querySelector(".form-control");
+        if (input) {
+          input.addEventListener("input", function () {
+            const filter = input.value.toLowerCase();
+            const items = dropdownMenu.querySelectorAll(".dropdown-item");
+            items.forEach((item) => {
+              if (item.textContent.toLowerCase().includes(filter)) {
+                item.style.display = "";
+              } else {
+                item.style.display = "none";
+              }
+            });
+          });
+        }
       }
     });
   });
@@ -33,6 +50,7 @@ export function initDropdowns() {
         menu.classList.remove("show");
       });
       document.querySelectorAll(".dropdown-toggle").forEach((btn) => {
+        btn.classList.remove("open");
         btn.setAttribute("aria-expanded", "false");
       });
     }
