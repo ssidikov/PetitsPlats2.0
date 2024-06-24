@@ -25,6 +25,7 @@ ul {
 
 body {
   background-color: var(--background-color);
+  font-family: Manrope, sans-serif;
 }
 
 img, svg {
@@ -136,10 +137,15 @@ img, svg {
   }
 }
 .filter-button {
+  display: flex;
+  justify-content: space-between;
   padding: 17px 16px;
   align-items: center;
   border-radius: 11px;
   background: var(--white-color);
+  color: var(--secondary-color);
+  font-weight: 500;
+  line-height: normal;
   border: none;
   min-width: 195px;
   outline: none;
@@ -151,6 +157,9 @@ img, svg {
 }
 .filter-button:hover {
   background: var(--white-color);
+}
+.filter-button .bi-chevron-down {
+  color: var(--secondary-color);
 }
 .filter .open {
   border-radius: 11px 11px 0 0;
@@ -191,11 +200,9 @@ img, svg {
   }
 }
 .filter .selected-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 21px;
   max-width: 100%;
+  transform: translateY(20px);
+  animation: slideIn 0.5s ease forwards;
 }
 .filter .selected-option {
   display: inline-block;
@@ -235,6 +242,9 @@ img, svg {
   position: relative;
   padding-right: 30px;
   padding-left: 10px;
+}
+.filter .form-control:focus {
+  box-shadow: none;
 }
 .filter .search-input {
   display: block;
@@ -354,4 +364,7 @@ input[type=search]::-webkit-search-cancel-button {
     opacity: 1;
     transform: translateY(0);
   }
+}
+.dropdown-toggle:after {
+  display: none;
 }/*# sourceMappingURL=style.css.map */

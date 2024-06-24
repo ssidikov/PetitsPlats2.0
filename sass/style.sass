@@ -40,6 +40,7 @@ ul
 
 body
   background-color: var(--background-color)
+  font-family: Manrope, sans-serif
 
 img, svg
   max-width: 100%
@@ -139,11 +140,16 @@ img, svg
 
   &-button
     // display: inline-flex
+    display: flex
+    justify-content: space-between
     padding: 17px 16px
     align-items: center
     // gap: 63px
     border-radius: 11px
     background: var(--white-color)
+    color: var(--secondary-color)
+    font-weight: 500
+    line-height: normal
     // position: relative
     // display: inline-block
     border: none
@@ -156,6 +162,10 @@ img, svg
       min-width: 160px
     &:hover
       background: var(--white-color)
+    .bi-chevron-down
+      // margin: 10px
+      // padding-top: 5px
+      color: var(--secondary-color)
   .open
     border-radius: 11px 11px 0 0
 
@@ -190,11 +200,13 @@ img, svg
       min-width: 160px
 
   .selected-options
-    display: flex
-    flex-wrap: wrap
-    gap: 8px
-    margin-top: 21px
+    // display: flex
+    // flex-wrap: wrap
+    // gap: 8px
+    // margin-top: 21px
     max-width: 100%
+    transform: translateY(20px)
+    animation: slideIn 0.5s ease forwards
 
   .selected-option
     display: inline-block
@@ -243,6 +255,8 @@ img, svg
     position: relative
     padding-right: 30px
     padding-left: 10px
+    &:focus
+      box-shadow: none
   .search-input
     display: block
     width: calc(100% - 30px)
@@ -371,6 +385,9 @@ input[type="search"]::-webkit-search-cancel-button
   100%
     opacity: 1
     transform: translateY(0)
+
+.dropdown-toggle:after
+  display: none
 
   // .dropdown-toggle:after
   //   font-family: FontAwesome
