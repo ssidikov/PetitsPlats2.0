@@ -247,11 +247,12 @@ img, svg {
 }
 .recipes-cards__error-message {
   display: none;
-  color: var(--secondary-color);
+  color: var(--tertiary-color);
   font-family: Anton, sans-serif;
   font-size: 21px;
   font-weight: 400;
   line-height: normal;
+  text-align: center;
 }
 .recipes-card {
   margin-bottom: 4.5vh;
