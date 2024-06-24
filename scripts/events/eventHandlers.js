@@ -46,6 +46,10 @@ export function addDropdownEventListeners(
 ) {
   const dropdown = document.getElementById(dropdownId);
   dropdown.addEventListener("click", (event) => {
+    if (event.target.classList.contains("search-input")) {
+      return; // Prevent the choice of the element if this is a search field
+    }
+
     const option = event.target.textContent;
     if (!selectedArray.includes(option)) {
       selectedArray.push(option);

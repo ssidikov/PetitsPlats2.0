@@ -51,6 +51,19 @@ export function initDropdowns() {
       });
     }
   });
+
+  document.querySelectorAll(".dropdown-item").forEach((item) => {
+    item.addEventListener("click", function (event) {
+      event.stopPropagation(); // Prevent dropdown from closing
+      const selectedContainer = item.closest(".filter-options").querySelector(".selected-options");
+      if (!selectedContainer.innerText.includes(item.innerText)) {
+        const selectedOption = document.createElement("span");
+        selectedOption.classList.add("badge", "bg-primary", "me-2");
+        selectedOption.textContent = item.textContent;
+        selectedContainer.appendChild(selectedOption);
+      }
+    });
+  });
 }
 
 function sortAlphabetically(array) {
@@ -68,6 +81,7 @@ export function generateOptions(items) {
 function setDropdownOptions(id, items) {
   const list = document.querySelector(id);
   if (list) {
+    list.innerHTML = ""; // Clear existing options
     list.innerHTML += generateOptions(items);
   }
 }
@@ -89,9 +103,9 @@ export function appendDropdownOptions(selector, options) {
   if (element) {
     const inputElement = element.querySelector("input");
 
-    // Remove all elements after search input
+    // Remove all elements after the search input
     while (inputElement.nextSibling) {
-      element.removeChild(inputElement.nextSibling);
+      inputElement.nextSibling.remove();
     }
 
     // Add new options after the search input

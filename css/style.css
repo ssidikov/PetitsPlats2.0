@@ -41,8 +41,10 @@ img, svg {
   background-image: url("../assets/images/header-background.webp");
   background-position: center;
 }
-.header .navbar {
-  justify-content: center;
+@media screen and (max-width: 768px) {
+  .header .navbar {
+    justify-content: center;
+  }
 }
 .header .hero {
   justify-content: center;
