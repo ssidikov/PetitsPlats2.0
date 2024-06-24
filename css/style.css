@@ -41,6 +41,9 @@ img, svg {
   background-image: url("../assets/images/header-background.webp");
   background-position: center;
 }
+.header .navbar {
+  justify-content: center;
+}
 .header .hero {
   justify-content: center;
   align-items: center;
@@ -62,6 +65,11 @@ img, svg {
   align-items: center;
   border: none;
   position: relative;
+}
+@media screen and (max-width: 768px) {
+  .header .hero-form {
+    width: 120%;
+  }
 }
 .header .hero-form-input {
   outline: none;
@@ -98,29 +106,46 @@ img, svg {
   margin-top: 22px;
   margin-bottom: 55px;
 }
+@media screen and (max-width: 992px) {
+  .filter {
+    flex-direction: column-reverse;
+  }
+}
 .filter-bar {
   margin: 20px 0;
-  width: 60%;
+}
+@media screen and (max-width: 768px) {
+  .filter-bar {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
 }
 .filter-options {
   min-width: 195px;
   position: relative;
   display: inline-block;
   margin: 20px 30px 20px 0;
-  height: -moz-fit-content;
-  height: fit-content;
+}
+@media screen and (max-width: 768px) {
+  .filter-options {
+    min-width: 100%;
+    margin-right: 0;
+  }
 }
 .filter-button {
   padding: 17px 16px;
   align-items: center;
-  gap: 63px;
   border-radius: 11px;
   background: var(--white-color);
-  position: relative;
-  display: inline-block;
   border: none;
   min-width: 195px;
   outline: none;
+}
+@media screen and (max-width: 768px) {
+  .filter-button {
+    min-width: 160px;
+  }
 }
 .filter-button:hover {
   background: var(--white-color);
@@ -136,13 +161,18 @@ img, svg {
   background-color: #fff;
   border-radius: 0 0 10px 10px;
   border: none;
+  padding: 15px 0;
+}
+@media screen and (max-width: 768px) {
+  .filter .dropdown-menu {
+    max-width: 160px;
+  }
 }
 .filter .dropdown-item {
   font-family: Manrope;
   padding: 9px 16px;
   font-size: 14px;
-  font-weight: 400;
-  min-width: 210px;
+  min-width: 195px;
   white-space: normal;
   word-wrap: break-word;
 }
@@ -153,11 +183,17 @@ img, svg {
 .filter ::first-letter {
   text-transform: uppercase;
 }
+@media screen and (max-width: 768px) {
+  .filter ::first-letter {
+    min-width: 160px;
+  }
+}
 .filter .selected-options {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 21px;
+  max-width: 100%;
 }
 .filter .selected-option {
   display: inline-block;
@@ -196,6 +232,11 @@ img, svg {
   position: relative;
   padding-right: 30px;
   padding-left: 10px;
+}
+.filter .search-input {
+  display: block;
+  width: calc(100% - 30px);
+  margin: 0 15px 15px 15px;
 }
 
 .recipes {

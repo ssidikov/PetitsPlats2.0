@@ -10,7 +10,6 @@ export function initDropdowns() {
         button.classList.remove("open");
         button.setAttribute("aria-expanded", "false");
       } else {
-        // Close all other dropdown menus and remove 'open' class from buttons
         document.querySelectorAll(".dropdown-menu").forEach((menu) => {
           menu.classList.remove("show");
         });
@@ -19,13 +18,11 @@ export function initDropdowns() {
           btn.setAttribute("aria-expanded", "false");
         });
 
-        // Open the clicked dropdown menu
         dropdownMenu.classList.add("show");
         button.classList.add("open");
         button.setAttribute("aria-expanded", "true");
 
-        // Add event listener to the input for searching options
-        const input = dropdownMenu.querySelector(".form-control");
+        const input = dropdownMenu.querySelector(".search-input");
         if (input) {
           input.addEventListener("input", function () {
             const filter = input.value.toLowerCase();
@@ -43,7 +40,6 @@ export function initDropdowns() {
     });
   });
 
-  // Close dropdown if clicked outside
   document.addEventListener("click", function (event) {
     if (!event.target.closest(".dropdown")) {
       document.querySelectorAll(".dropdown-menu").forEach((menu) => {
@@ -67,6 +63,25 @@ export function generateOptions(items) {
   return sortedItems
     .map((item) => `<li><a class="dropdown-item" href="#">${item}</a></li>`)
     .join("");
+}
+
+function setDropdownOptions(id, items) {
+  const list = document.querySelector(id);
+  if (list) {
+    list.innerHTML += generateOptions(items);
+  }
+}
+
+export function initIngredientsDropdown(ingredients) {
+  setDropdownOptions("#ingredients-list", ingredients);
+}
+
+export function initAppliancesDropdown(appliances) {
+  setDropdownOptions("#appliances-list", appliances);
+}
+
+export function initUtensilsDropdown(utensils) {
+  setDropdownOptions("#utensils-list", utensils);
 }
 
 export function appendDropdownOptions(selector, options) {

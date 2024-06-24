@@ -1,6 +1,24 @@
 @import url('https://fonts.googleapis.com/css?family=Anton:regular')
 @import url('https://fonts.googleapis.com/css?family=Manrope:200,300,regular,500,600,700,800')
 
+// Breakpoints
+// $breakpoint-xs: 375px
+$breakpoint-sm: 768px
+$breakpoint-md: 992px
+$breakpoint-lg: 1200px
+
+@mixin mobile-version
+  @media screen and (max-width: #{$breakpoint-sm})
+    @content
+
+@mixin tablet-version
+  @media screen and (max-width: #{$breakpoint-md})
+    @content
+
+@mixin desktop-version
+  @media screen and (max-width: #{$breakpoint-lg})
+    @content
+
 *
   margin: 0
   padding: 0
@@ -36,6 +54,10 @@ img, svg
   background-image: url('../assets/images/header-background.webp')
   background-position: center
 
+  .navbar
+    @include mobile-version
+    justify-content: center
+
   .hero
     justify-content: center
     align-items: center
@@ -57,6 +79,8 @@ img, svg
       align-items: center
       border: none
       position: relative
+      @include mobile-version
+        width: 120%
 
       &-input
         outline: none
@@ -86,10 +110,16 @@ img, svg
 .filter
   margin-top: 22px
   margin-bottom: 55px
+  @include tablet-version
+    flex-direction: column-reverse
 
   &-bar
     margin: 20px 0
-    width: 60%
+    @include mobile-version
+      display: grid !important
+      grid-template-columns: 1fr 1fr
+      width: 100%
+    // width: 60%
 
   &-options
     // width: 30%
@@ -101,24 +131,29 @@ img, svg
     // border-radius: 10px
     margin: 20px 30px 20px 0
     // font-family: var(--secondary-font-family)
-    height: fit-content
+    // height: fit-content
     // border-radius: 11px
+    @include mobile-version
+      min-width: 100%
+      margin-right: 0
 
   &-button
     // display: inline-flex
     padding: 17px 16px
     align-items: center
-    gap: 63px
+    // gap: 63px
     border-radius: 11px
     background: var(--white-color)
-    position: relative
-    display: inline-block
+    // position: relative
+    // display: inline-block
     border: none
     // font-size: 16px
     // font-weight: 500
     // width: 100%
     min-width: 195px
     outline: none
+    @include mobile-version
+      min-width: 160px
     &:hover
       background: var(--white-color)
   .open
@@ -135,13 +170,15 @@ img, svg
     background-color: #fff
     border-radius: 0 0 10px 10px
     border: none
+    padding: 15px 0
+    @include mobile-version
+      max-width: 160px
 
   .dropdown-item
     font-family: Manrope
     padding: 9px 16px
     font-size: 14px
-    font-weight: 400
-    min-width: 210px
+    min-width: 195px
     white-space: normal
     word-wrap: break-word
     &:hover
@@ -149,12 +186,15 @@ img, svg
       color: var(--secondary-color)
   ::first-letter
     text-transform: uppercase
+    @include mobile-version
+      min-width: 160px
 
   .selected-options
     display: flex
     flex-wrap: wrap
     gap: 8px
     margin-top: 21px
+    max-width: 100%
 
   .selected-option
     display: inline-block
@@ -201,7 +241,10 @@ img, svg
     position: relative
     padding-right: 30px
     padding-left: 10px
-
+  .search-input
+    display: block
+    width: calc(100% - 30px)
+    margin: 0 15px 15px 15px
   // .form-control, li
   //   max-width: 210px
 
