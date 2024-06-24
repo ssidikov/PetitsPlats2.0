@@ -165,8 +165,10 @@ img, svg {
   border-radius: 11px 11px 0 0;
 }
 .filter .dropdown-menu {
-  max-height: 215px;
-  overflow-y: auto;
+  max-height: 315px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  overflow-x: hidden;
   max-width: 195px;
   z-index: 1;
   background-color: #fff;
@@ -233,6 +235,7 @@ img, svg {
 .filter .form-control {
   margin: 0 15px;
   height: 36px;
+  font-size: 14px;
   width: 85%;
   width: 163px;
   height: 36px;
