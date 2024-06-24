@@ -37,42 +37,50 @@
   <main class="main">
     <div class="container">
       <section class="filter d-flex justify-content-between align-items-center">
-        <div class="filter-bar d-flex justify-content-between">
-          <div class="filter-options dropdown">
-            <button class="filter-button dropdown-toggle" type="button" id="ingredientsDropdown"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Ingrédients
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="ingredientsDropdown" id="ingredients-list">
-              <li><input type="text" class="form-control mb-2 search-input" placeholder="Rechercher..."></li>
-              <!-- dynamic options will be appended here -->
-            </ul>
+        <div class="filter-bar d-flex justify-content-between flex-column">
+          <div class="filter-bar__options">
+            <div class="filter-options dropdown">
+              <button class="filter-button dropdown-toggle" type="button" id="ingredientsDropdown"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Ingrédients
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="ingredientsDropdown" id="ingredients-list">
+                <li><input type="text" class="form-control mb-2 search-input" placeholder="Rechercher..."></li>
+                <!-- dynamic options will be appended here -->
+              </ul>
+
+            </div>
+            <div class="filter-options dropdown">
+              <button class="filter-button dropdown-toggle" type="button" id="appliancesDropdown"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Appareils
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="appliancesDropdown" id="appliances-list">
+                <li><input type="text" class="form-control mb-2 search-input" placeholder="Rechercher..."></li>
+                <!-- dynamic options will be appended here -->
+              </ul>
+
+            </div>
+            <div class="filter-options dropdown">
+              <button class="filter-button dropdown-toggle" type="button" id="utensilsDropdown"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Ustensiles
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="utensilsDropdown" id="utensils-list">
+                <li class="form-search"><input type="text" class="form-control mb-2 search-input"
+                    placeholder="Rechercher..."></li>
+                <!-- dynamic options will be appended here -->
+              </ul>
+
+            </div>
+          </div>
+          <div class="options-bar d-flex flex-row">
             <div id="selected-ingredients" class="selected-options"></div>
-          </div>
-          <div class="filter-options dropdown">
-            <button class="filter-button dropdown-toggle" type="button" id="appliancesDropdown"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Appareils
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="appliancesDropdown" id="appliances-list">
-              <li><input type="text" class="form-control mb-2 search-input" placeholder="Rechercher..."></li>
-              <!-- dynamic options will be appended here -->
-            </ul>
             <div id="selected-appliances" class="selected-options"></div>
-          </div>
-          <div class="filter-options dropdown">
-            <button class="filter-button dropdown-toggle" type="button" id="utensilsDropdown" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Ustensiles
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="utensilsDropdown" id="utensils-list">
-              <li><input type="text" class="form-control mb-2 search-input" placeholder="Rechercher..."></li>
-              <!-- dynamic options will be appended here -->
-            </ul>
             <div id="selected-utensils" class="selected-options"></div>
           </div>
         </div>
-        <p class="filter-number align-self-center"></p>
+        <p class="filter-number"></p>
       </section>
       <section class="recipes">
         <div id="error-message" class="recipes-cards__error-message"></div>

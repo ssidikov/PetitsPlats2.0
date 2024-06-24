@@ -45,26 +45,26 @@ export function addDropdownEventListeners(
   updateDropdownOptions
 ) {
   const dropdown = document.getElementById(dropdownId);
-  dropdown.addEventListener("click", (event) => {
-    if (event.target.classList.contains("search-input")) {
-      return; // Prevent the choice of the element if this is a search field
-    }
+  dropdown.addEventListener("mousedown", (event) => {
+    // Check if the clicked element has the class 'dropdown-item'
+    if (event.target.classList.contains("dropdown-item")) {
+      const option = event.target.textContent.trim();
 
-    const option = event.target.textContent;
-    if (!selectedArray.includes(option)) {
-      selectedArray.push(option);
-      updateSelectedOptions(
-        selectedContainerId,
-        selectedArray,
-        recipes,
-        searchInput,
-        selectedIngredients,
-        selectedAppliances,
-        selectedUtensils,
-        displayRecipes,
-        updateRecipeCount,
-        updateDropdownOptions
-      );
+      if (!selectedArray.includes(option)) {
+        selectedArray.push(option);
+        updateSelectedOptions(
+          selectedContainerId,
+          selectedArray,
+          recipes,
+          searchInput,
+          selectedIngredients,
+          selectedAppliances,
+          selectedUtensils,
+          displayRecipes,
+          updateRecipeCount,
+          updateDropdownOptions
+        );
+      }
     }
   });
 }
