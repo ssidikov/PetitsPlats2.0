@@ -1,8 +1,22 @@
+// Import Google Fonts
 @import url('https://fonts.googleapis.com/css?family=Anton:regular')
 @import url('https://fonts.googleapis.com/css?family=Manrope:200,300,regular,500,600,700,800')
 
-// Breakpoints
-// $breakpoint-xs: 375px
+// Import Bootstrap
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css')
+
+// Import Bootstrap Icons
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css')
+
+:root
+  --primary-color: #ffd15b
+  --secondary-color: #1b1b1b
+  --tertiary-color: #7a7a7a
+  --light-grey: #c6c6c6
+  --white-color: #fff
+  --background-color: #ededed
+
+// Variables and Mixins
 $breakpoint-sm: 768px
 $breakpoint-md: 992px
 $breakpoint-lg: 1200px
@@ -19,83 +33,63 @@ $breakpoint-lg: 1200px
   @media screen and (max-width: #{$breakpoint-lg})
     @content
 
-*
+// General Reset
+*, *::before, *::after
   margin: 0
   padding: 0
-  scroll-behavior: smooth
 
-html:focus-within
+// Global Styles
+html, body
   scroll-behavior: smooth
+  font-family: 'Manrope', sans-serif
+  background-color: var(--background-color)
 
 ul
   list-style: none
 
-:root
-  --primary-color: #ffd15b
-  --secondary-color: #1b1b1b
-  --tertiary-color: #7a7a7a
-  --light-grey: #c6c6c6
-  --white-color: #fff
-  --background-color: #ededed
-
-body
-  background-color: var(--background-color)
-  font-family: Manrope, sans-serif
-
-img, svg
-  max-width: 100%
-  height: auto
-  vertical-align: middle
-  background-repeat: no-repeat
-  background-size: cover
-
+// Header Styles
 .header
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%), lightgray 50% / cover no-repeat
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%), url('../assets/images/header-background.webp') 50% / cover no-repeat
   background-size: cover
-  background-image: url('../assets/images/header-background.webp')
+  // background-image: url('../assets/images/header-background.webp')
   background-position: center
-
   .navbar
     @include mobile-version
       justify-content: center
 
   .hero
-    justify-content: center
-    align-items: center
     display: flex
     flex-direction: column
+    justify-content: center
+    align-items: center
     margin-top: 12vh
-    margin-bottom: 9.5vh
-
+    margin-bottom: 14.5vh
     &-title
       font-family: Anton, sans-serif
       color: var(--primary-color)
       font-size: clamp(1.375rem, 0.9821rem + 1.9643vw, 2.75rem)
       line-height: normal
       margin-bottom: 30px
-
     &-form
+      display: flex
       justify-content: center
-      height: 5vh
       align-items: center
-      border: none
+      width: 70%
       position: relative
       @include mobile-version
-        width: 120%
-
+        width: 100%
       &-input
-        outline: none
+        width: 100%
+        padding: 24px 80px 26px 35px
         border-radius: 11px
         color: var(--tertiary-color)
-        font-family: Manrope, sans-serif
         font-weight: 400
         line-height: normal
-        padding: 24px 80px 26px 35px
+        white-space: nowrap
         overflow: hidden
         text-overflow: ellipsis
-        white-space: nowrap
-        width: calc(100% - 120px) // Adjust width to accommodate buttons
-
+        outline: none
+        border: none
       &-button
         background-color: var(--secondary-color)
         color: var(--white-color)
@@ -103,7 +97,7 @@ img, svg
         border: none
         width: 51px
         height: 52px
-        right: 71px
+        right: 15px
 
 .search-input:not(:placeholder-shown) + .remove-btn
   display: inline
