@@ -139,6 +139,11 @@ export function displayRecipes(recipes, keyword) {
 
 export function updateRecipeCount(count) {
   const filterNumberElement = document.querySelector(".filter-number");
-  filterNumberElement.textContent =
-    count === 0 ? "Aucune recette trouvée pour votre recherche" : `${count} recettes`;
+  if (count === 0) {
+    filterNumberElement.textContent = "Aucune recette trouvée pour votre recherche";
+  } else {
+    // Formatting of the number with leading zeros up to two digits
+    const formattedCount = String(count).padStart(2, "0");
+    filterNumberElement.textContent = `${formattedCount} recettes`;
+  }
 }
