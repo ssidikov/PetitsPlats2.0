@@ -42,6 +42,7 @@ html, body
 
 ul
   list-style: none
+  padding: 0 !important
 
 // Header Styles
 .header
@@ -168,7 +169,7 @@ ul
     border-radius: 11px 11px 0 0
 
   .dropdown-menu
-    max-height: 315px
+    max-height: 285px
     overflow-y: scroll
     scrollbar-width: none
     overflow-x: hidden
@@ -404,3 +405,10 @@ ul
 
 .selected-color
   color: $primary-color
+
+.sticky
+  position: -webkit-sticky
+  position: sticky
+  background-color: $white-color
+  top: 0
+  padding: 0 0 10px
