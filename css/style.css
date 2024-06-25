@@ -152,7 +152,7 @@ ul {
   overflow-x: hidden;
   max-width: 195px;
   z-index: 1;
-  background-color: #fff;
+  background-color: var(--white-color);
   border-radius: 0 0 10px 10px;
   border: none;
   padding: 15px 0;
@@ -187,20 +187,35 @@ ul {
   }
 }
 .filter .selected-option {
-  display: flex;
+  display: inline-block;
   justify-content: space-between;
   background-color: var(--primary-color);
   border-radius: 10px;
   padding: 17px 18px;
+  gap: 60px;
   font-size: 14px;
   font-weight: bold;
-}
-.filter .selected-option::first-letter {
-  text-transform: uppercase;
 }
 .filter .selected-option i {
   margin-left: 20px;
   cursor: pointer;
+  float: right;
+}
+@media screen and (max-width: 768px) {
+  .filter .selected-option i {
+    margin-left: 5px;
+  }
+}
+.filter .selected-option::first-letter {
+  text-transform: uppercase;
+}
+@media screen and (max-width: 768px) {
+  .filter .selected-option {
+    font-size: 11px;
+    padding: 13px;
+    min-width: 140px;
+    max-height: 50px;
+  }
 }
 .filter-number {
   align-self: flex-start !important;

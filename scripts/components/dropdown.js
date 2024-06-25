@@ -84,25 +84,25 @@ export function generateOptions(items) {
     .join("");
 }
 
-function setDropdownOptions(id, items) {
-  const list = document.querySelector(id);
-  if (list) {
-    list.innerHTML = ""; // Clear existing options
-    list.innerHTML += generateOptions(items);
-  }
-}
+// function setDropdownOptions(id, items) {
+//   const list = document.querySelector(id);
+//   if (list) {
+//     list.innerHTML = ""; // Clear existing options
+//     list.innerHTML += generateOptions(items);
+//   }
+// }
 
-export function initIngredientsDropdown(ingredients) {
-  setDropdownOptions("#ingredients-list", ingredients);
-}
+// export function initIngredientsDropdown(ingredients) {
+//   setDropdownOptions("#ingredients-list", ingredients);
+// }
 
-export function initAppliancesDropdown(appliances) {
-  setDropdownOptions("#appliances-list", appliances);
-}
+// export function initAppliancesDropdown(appliances) {
+//   setDropdownOptions("#appliances-list", appliances);
+// }
 
-export function initUtensilsDropdown(utensils) {
-  setDropdownOptions("#utensils-list", utensils);
-}
+// export function initUtensilsDropdown(utensils) {
+//   setDropdownOptions("#utensils-list", utensils);
+// }
 
 export function appendDropdownOptions(selector, options) {
   const element = document.getElementById(selector);
