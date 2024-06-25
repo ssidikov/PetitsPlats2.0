@@ -4,7 +4,7 @@ export function initDropdowns() {
   dropdownButtons.forEach((button) => {
     button.addEventListener("click", function () {
       const dropdownMenu = button.nextElementSibling;
-      const input = dropdownMenu.querySelector(".search-input");
+      const input = dropdownMenu.querySelector(".form-control");
 
       if (dropdownMenu.classList.contains("show")) {
         closeDropdown(button, dropdownMenu);

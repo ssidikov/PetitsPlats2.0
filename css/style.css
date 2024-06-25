@@ -2,19 +2,10 @@
 @import url("https://fonts.googleapis.com/css?family=Manrope:200,300,regular,500,600,700,800");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css");
-:root {
-  --primary-color: #ffd15b;
-  --secondary-color: #1b1b1b;
-  --tertiary-color: #7a7a7a;
-  --light-grey: #c6c6c6;
-  --white-color: #fff;
-  --background-color: #ededed;
-}
-
 html, body {
   scroll-behavior: smooth;
   font-family: "Manrope", sans-serif;
-  background-color: var(--background-color);
+  background-color: #ededed;
 }
 
 ul {
@@ -41,7 +32,7 @@ ul {
 }
 .header .hero-title {
   font-family: Anton, sans-serif;
-  color: var(--primary-color);
+  color: #ffd15b;
   font-size: clamp(1.375rem, 0.9821rem + 1.9643vw, 2.75rem);
   line-height: normal;
   margin-bottom: 30px;
@@ -58,27 +49,41 @@ ul {
     width: 100%;
   }
 }
-.header .hero-form-input {
+.header .hero-form__input {
+  position: relative;
   width: 100%;
   padding: 24px 80px 26px 35px;
   border-radius: 11px;
-  color: var(--tertiary-color);
+  color: #7a7a7a;
   font-weight: 400;
   line-height: normal;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   outline: none;
+  border: none;
+}
+.header .hero-form input[type=search]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23777'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>");
 }
 .header .hero-form-button {
   width: 51px;
   height: 52px;
-  background-color: var(--secondary-color);
-  color: var(--white-color);
+  background-color: #1b1b1b;
+  color: #fff;
   border-radius: 10px;
   border: none;
   position: absolute;
   right: 15px;
+  transition: all 0.3s ease;
+}
+.header .hero-form-button:hover {
+  background-color: #ffd15b;
+  color: #1b1b1b;
 }
 
 .filter {
@@ -109,7 +114,6 @@ ul {
 }
 .filter-options {
   min-width: 195px;
-  position: relative;
   display: inline-block;
   margin: 0 66px 20px 0;
 }
@@ -118,18 +122,14 @@ ul {
     margin-right: 0;
   }
 }
-.filter .options-bar {
-  gap: 20px;
-  flex-wrap: wrap;
-}
 .filter-button {
   display: flex;
   justify-content: space-between;
   padding: 17px 16px;
   align-items: center;
   border-radius: 11px;
-  background: var(--white-color);
-  color: var(--secondary-color);
+  background: #fff;
+  color: #1b1b1b;
   font-weight: 500;
   line-height: normal;
   border: none;
@@ -137,10 +137,13 @@ ul {
   outline: none;
 }
 .filter-button:hover {
-  background: var(--white-color);
+  background: #fff;
 }
 .filter-button .bi-chevron-down {
-  color: var(--secondary-color);
+  color: #1b1b1b;
+}
+.filter .dropdown-toggle:after {
+  display: none;
 }
 .filter .open {
   border-radius: 11px 11px 0 0;
@@ -152,25 +155,32 @@ ul {
   overflow-x: hidden;
   max-width: 195px;
   z-index: 1;
-  background-color: var(--white-color);
+  background-color: #fff;
   border-radius: 0 0 10px 10px;
   border: none;
-  padding: 15px 0;
+  padding: 0;
 }
 .filter .dropdown-item {
   font-family: Manrope;
-  padding: 9px 16px;
+  color: #1b1b1b;
+  padding: 7px 16px;
   font-size: 14px;
   min-width: 195px;
   white-space: normal;
   word-wrap: break-word;
 }
 .filter .dropdown-item:hover {
-  background-color: #ffc107 !important;
-  color: var(--secondary-color);
+  background-color: #ffd15b !important;
+  color: #1b1b1b;
 }
 .filter ::first-letter {
   text-transform: uppercase;
+}
+.filter .options-bar {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 .filter .selected-options {
   display: flex;
@@ -189,7 +199,7 @@ ul {
 .filter .selected-option {
   display: inline-block;
   justify-content: space-between;
-  background-color: var(--primary-color);
+  background-color: #ffd15b;
   border-radius: 10px;
   padding: 17px 18px;
   gap: 60px;
@@ -218,10 +228,10 @@ ul {
   }
 }
 .filter-number {
-  align-self: flex-start !important;
+  align-self: flex-start;
   margin-top: 20px;
   min-width: 100px;
-  color: var(--secondary-color);
+  color: #1b1b1b;
   font-family: Anton, sans-serif;
   font-size: 21px;
   font-weight: 400;
@@ -229,7 +239,7 @@ ul {
 }
 @media screen and (max-width: 768px) {
   .filter-number {
-    align-self: flex !important;
+    align-self: center;
   }
 }
 .filter .form-control {
@@ -237,22 +247,25 @@ ul {
   height: 36px;
   font-size: 14px;
   width: 85%;
-  width: 163px;
-  height: 36px;
-  border: 1px solid var(--light-grey);
-  border-radius: 5px;
-  height: 36px;
-  position: relative;
-  padding-right: 30px;
-  padding-left: 10px;
+  border: 1px solid #c6c6c6;
+  border-radius: 2px;
+  color: #7a7a7a;
 }
 .filter .form-control:focus {
   box-shadow: none;
 }
-.filter .search-input {
-  display: block;
-  width: calc(100% - 30px);
-  margin: 0 15px 15px 15px;
+.filter .form-control .dropdown-menu {
+  padding: 15px 0;
+  margin-bottom: 0;
+  flex-wrap: wrap;
+  max-height: 60vh;
+  background-color: #fff;
+  overflow-y: auto;
+  box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 10px 10px;
+}
+.filter .form-control .dropdown-menu li:hover {
+  background-color: #ffc107 !important;
 }
 
 .recipes {
@@ -277,7 +290,7 @@ ul {
 }
 .recipes-cards__error-message {
   display: none;
-  color: var(--tertiary-color);
+  color: #7a7a7a;
   font-family: Anton, sans-serif;
   font-size: 21px;
   font-weight: 400;
@@ -298,8 +311,8 @@ ul {
   position: absolute;
   top: 21px;
   right: 22px;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
+  background-color: #ffd15b;
+  color: #1b1b1b;
   font-size: 12px;
   font-family: Manrope, sans-serif;
   font-style: normal;
@@ -324,7 +337,7 @@ ul {
   margin-bottom: 29px;
 }
 .recipes .recipe-card .card-description__name {
-  color: var(--tertiary-color);
+  color: #7a7a7a;
   font-family: Manrope;
   font-size: 12px;
   font-style: normal;
@@ -334,7 +347,7 @@ ul {
   text-transform: uppercase;
 }
 .recipes .recipe-card .card-description__text {
-  color: var(--secondary-color);
+  color: #1b1b1b;
   font-family: Manrope;
   font-size: 14px;
   font-style: normal;
@@ -351,7 +364,7 @@ ul {
   padding: 0;
 }
 .recipes .recipe-card .card-description__item-ingredients {
-  color: var(--secondary-color);
+  color: #1b1b1b;
   font-family: Manrope;
   font-size: 14px;
   font-style: normal;
@@ -360,20 +373,12 @@ ul {
   margin-bottom: 0px;
 }
 .recipes .recipe-card .card-description__item-quantity {
-  color: var(--tertiary-color);
+  color: #7a7a7a;
   font-family: Manrope;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-}
-
-input[type=search]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-  height: 24px;
-  width: 24px;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23777'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>");
 }
 
 @keyframes slideIn {
@@ -386,10 +391,6 @@ input[type=search]::-webkit-search-cancel-button {
     transform: translateY(0);
   }
 }
-.dropdown-toggle:after {
-  display: none;
-}
-
 .selected-color {
-  color: var(--primary-color);
+  color: #ffd15b;
 }/*# sourceMappingURL=style.css.map */

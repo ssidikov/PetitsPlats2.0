@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     appendDropdownOptions("utensils-list", generateOptions(utensils));
   }
 
-  const searchInput = document.querySelector(".hero-form-input");
+  const searchInput = document.querySelector(".hero-form__input");
   addSearchEventHandler(
     searchInput,
     recipes,
