@@ -80,7 +80,7 @@ export function generateOptions(items) {
   const uniqueItems = [...new Set(items)];
   const sortedItems = sortAlphabetically(uniqueItems);
   return sortedItems
-    .map((item) => `<li><a class="dropdown-item" href="#">${item}</a></li>`)
+    .map((item) => `<li><a class="dropdown-item" href="#" tabindex="0">${item}</a></li>`)
     .join("");
 }
 

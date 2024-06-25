@@ -23,6 +23,9 @@ ul {
     justify-content: center;
   }
 }
+.header .navbar .logo {
+  width: 207px;
+}
 .header .hero {
   display: flex;
   justify-content: center;

@@ -13,18 +13,20 @@
   <!-- Header -->
   <header class="header py-5">
     <div class="container text-center">
-      <nav class="navbar">
+      <nav class="navbar" aria-label="Main Navigation">
         <a href="index.html">
-          <img src="assets/logo/logo.svg" alt="Les Petit Plats" width="207" height="25">
+          <img src="assets/logo/logo.svg" class="logo" alt="Les Petit Plats">
         </a>
       </nav>
       <div class="hero text-center">
         <h1 class="hero-title">CHERCHEZ PARMI PLUS DE 1500 RECETTES <br> DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES</h1>
-        <form class="hero-form">
-          <input type="search" class="hero-form__input" aria-label="search"
-            placeholder="Rechercher une recette, un ingrédient, ..." maxlength="30">
-          <button class="hero-form-button position-absolute" type="submit">
-            <i class="bi bi-search"></i>
+        <form class="hero-form" role="search">
+          <label for="search-input" class="visually-hidden">Rechercher</label>
+          <input id="search-input" type="search" class="hero-form__input"
+            aria-label="Rechercher une recette, un ingrédient" placeholder="Rechercher une recette, un ingrédient, ..."
+            maxlength="30">
+          <button class="hero-form-button position-absolute" type="submit" aria-label="Rechercher">
+            <i class="bi bi-search" aria-hidden="true"></i>
           </button>
         </form>
       </div>
@@ -33,58 +35,74 @@
   <!-- Main -->
   <main class="main">
     <div class="container">
-      <section class="filter">
-        <div class="filter-bar">
+      <section class="filter" aria-labelledby="filter-heading">
+        <h2 id="filter-heading" class="visually-hidden">Filtrer les recettes</h2>
+        <div class="filter-bar" tabindex="0">
           <div class="filter-bar__options">
             <div class="filter-options dropdown">
-              <button class="filter-button dropdown-toggle" type="button" id="ingredientsDropdown"
-                aria-expanded="false">
+              <button class="filter-button dropdown-toggle" type="button" id="ingredientsDropdown" aria-expanded="false"
+                aria-haspopup="true" tabindex="0">
                 Ingrédients
-                <i class="bi bi-chevron-down"></i>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
               </button>
               <div class="dropdown-menu" aria-labelledby="ingredientsDropdown" id="ingredients-list">
-                <div class="sticky"><input type="text" class="form-control mb-2" placeholder="Rechercher..."></div>
-                <ul class="dropdown-options">
+                <div class="sticky">
+                  <label for="ingredients-search" class="visually-hidden">Rechercher ingrédients</label>
+                  <input id="ingredients-search" type="text" class="form-control mb-2" placeholder="Rechercher..."
+                    tabindex="0">
+                </div>
+                <ul class="dropdown-options" role="listbox" tabindex="0">
                   <!-- dynamic options will be appended here -->
                 </ul>
               </div>
             </div>
             <div class="filter-options dropdown">
-              <button class="filter-button dropdown-toggle" type="button" id="appliancesDropdown" aria-expanded="false">
+              <button class="filter-button dropdown-toggle" type="button" id="appliancesDropdown" aria-expanded="false"
+                aria-haspopup="true" tabindex="0">
                 Appareils
-                <i class="bi bi-chevron-down"></i>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
               </button>
               <div class="dropdown-menu" aria-labelledby="appliancesDropdown" id="appliances-list">
-                <div class="sticky"><input type="text" class="form-control mb-2" placeholder="Rechercher..."></div>
-                <ul class="dropdown-options">
+                <div class="sticky">
+                  <label for="appliances-search" class="visually-hidden">Rechercher appareils</label>
+                  <input id="appliances-search" type="text" class="form-control mb-2" placeholder="Rechercher..."
+                    tabindex="0">
+                </div>
+                <ul class="dropdown-options" role="listbox" tabindex="0">
                   <!-- dynamic options will be appended here -->
                 </ul>
               </div>
             </div>
             <div class="filter-options dropdown">
-              <button class="filter-button dropdown-toggle" type="button" id="utensilsDropdown" aria-expanded="false">
+              <button class="filter-button dropdown-toggle" type="button" id="utensilsDropdown" aria-expanded="false"
+                aria-haspopup="true" tabindex="0">
                 Ustensiles
-                <i class="bi bi-chevron-down"></i>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
               </button>
               <div class="dropdown-menu" aria-labelledby="utensilsDropdown" id="utensils-list">
-                <div class="sticky"><input type="text" class="form-control mb-2" placeholder="Rechercher..."></div>
-                <ul class="dropdown-options">
+                <div class="sticky">
+                  <label for="utensils-search" class="visually-hidden">Rechercher ustensiles</label>
+                  <input id="utensils-search" type="text" class="form-control mb-2" placeholder="Rechercher..."
+                    tabindex="0">
+                </div>
+                <ul class="dropdown-options" role="listbox" tabindex="0">
                   <!-- dynamic options will be appended here -->
                 </ul>
               </div>
             </div>
           </div>
           <div class="options-bar">
-            <div id="selected-ingredients" class="selected-options"></div>
-            <div id="selected-appliances" class="selected-options"></div>
-            <div id="selected-utensils" class="selected-options"></div>
+            <div id="selected-ingredients" class="selected-options" aria-live="polite" tabindex="0"></div>
+            <div id="selected-appliances" class="selected-options" aria-live="polite" tabindex="0"></div>
+            <div id="selected-utensils" class="selected-options" aria-live="polite" tabindex="0"></div>
           </div>
         </div>
-        <p class="filter-number"></p>
+        <p class="filter-number" aria-live="polite" tabindex="0"></p>
       </section>
-      <section class="recipes">
-        <div id="error-message" class="recipes-cards__error-message"></div>
-        <div class="recipes-cards row">
+      <section class="recipes" aria-labelledby="recipes-heading">
+        <h2 id="recipes-heading" class="visually-hidden">Recettes</h2>
+        <div id="error-message" class="recipes-cards__error-message" role="alert" tabindex="0"></div>
+        <div class="recipes-cards row" role="list" tabindex="0">
           <!-- recipe Cards will be dynamically inserted here -->
         </div>
       </section>
