@@ -33,11 +33,6 @@ $breakpoint-lg: 1200px
   @media screen and (max-width: #{$breakpoint-lg})
     @content
 
-// General Reset
-*, *::before, *::after
-  margin: 0
-  padding: 0
-
 // Global Styles
 html, body
   scroll-behavior: smooth
@@ -74,7 +69,7 @@ ul
       display: flex
       justify-content: center
       align-items: center
-      width: 70%
+      width: 75%
       position: relative
       @include mobile-version
         width: 100%
@@ -89,33 +84,34 @@ ul
         overflow: hidden
         text-overflow: ellipsis
         outline: none
-        border: none
       &-button
+        width: 51px
+        height: 52px
         background-color: var(--secondary-color)
         color: var(--white-color)
         border-radius: 10px
         border: none
-        width: 51px
-        height: 52px
+        position: absolute
         right: 15px
 
-.search-input:not(:placeholder-shown) + .remove-btn
-  display: inline
-
+// Filter Section Styles
 .filter
-  margin-top: 22px
-  margin-bottom: 55px
+  margin: 22px 0 43px
+  display: flex
+  justify-content: space-between
+  align-items: center
   @include tablet-version
     flex-direction: column-reverse
-
   &-bar
-    margin: 20px 0
+    display: flex
+    justify-content: space-between
+    flex-direction: column
     @include mobile-version
-      display: grid !important
-      grid-template-columns: 1fr 1fr
       width: 100%
-    // width: 60%
-
+      &__options
+        display: flex
+        flex-direction: column
+        align-items: center
   &-options
     // width: 30%
     min-width: 195px
@@ -124,13 +120,17 @@ ul
     // background-color: #fff
     // width: 195px
     // border-radius: 10px
-    margin: 20px 30px 20px 0
+    margin: 0 66px 20px 0
     // font-family: var(--secondary-font-family)
     // height: fit-content
     // border-radius: 11px
     @include mobile-version
-      min-width: 100%
+      // min-width: 100%
       margin-right: 0
+  .options-bar
+    gap: 20px
+    flex-wrap: wrap
+    // width: 80%
 
   &-button
     // display: inline-flex
@@ -152,8 +152,8 @@ ul
     // width: 100%
     min-width: 195px
     outline: none
-    @include mobile-version
-      min-width: 160px
+    // @include mobile-version
+    //   min-width: 160px
     &:hover
       background: var(--white-color)
     .bi-chevron-down
@@ -174,8 +174,8 @@ ul
     border-radius: 0 0 10px 10px
     border: none
     padding: 15px 0
-    @include mobile-version
-      max-width: 160px
+    // @include mobile-version
+    //   max-width: 160px
 
   .dropdown-item
     font-family: Manrope
@@ -189,17 +189,21 @@ ul
       color: var(--secondary-color)
   ::first-letter
     text-transform: uppercase
-    @include mobile-version
-      min-width: 160px
+    // @include mobile-version
+    //   min-width: 160px
 
   .selected-options
-    // display: flex
+    display: flex
     // flex-wrap: wrap
-    // gap: 8px
+    gap: 20px
     // margin-top: 21px
     max-width: 100%
     transform: translateY(20px)
     animation: slideIn 0.5s ease forwards
+    @include mobile-version
+      display: grid
+      grid-template-columns: 1fr 1fr
+      gap: 10px
 
   .selected-option
     display: inline-block
@@ -207,19 +211,19 @@ ul
     border-radius: 10px
     padding: 17px 18px
     gap: 60px
-    margin: 5px
     font-size: 14px
     font-weight: bold
     &::first-letter
       text-transform: uppercase
 
     i
-      margin-left: 10px
+      margin-left: 60px
       cursor: pointer
 
   &-number
     align-self: flex-start !important
-    margin-top: 55px
+    margin-top: 20px
+    min-width: 100px
     // float: right
     color: var(--secondary-color)
     font-family: Anton, sans-serif
@@ -279,6 +283,19 @@ ul
 
 .recipes
   margin-bottom: 7vh
+  &-cards
+    @include desktop-version
+      display: grid
+      grid-template-columns: 1fr 1fr
+      gap: 20px
+    @include mobile-version
+      // display: flex
+      // flex-direction: column
+      // align-items: center
+      grid-template-columns: 1fr
+    .recipes-card
+      @include desktop-version
+        width: 100%
   &-cards__error-message
     display: none
     color: var(--tertiary-color)
@@ -290,7 +307,7 @@ ul
   &-card
     margin-bottom: 4.5vh
   .recipe-card
-    height: 731px
+    // height: 731px
     position: relative
     border: none
     box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04)
@@ -317,7 +334,7 @@ ul
 
       &-body
         padding: 32px 25px
-
+        height: 414px
       &-title
         font-family: Anton, sans-serif
         font-size: clamp(0.875rem, 0.8036rem + 0.3571vw, 1.125rem)
@@ -350,12 +367,13 @@ ul
           align-items: start
           padding: 0
         &__item-ingredients
-          color: var (--secondary-color)
+          color: var(--secondary-color)
           font-family: Manrope
           font-size: 14px
           font-style: normal
           font-weight: 500
           line-height: normal
+          margin-bottom: 0px
         &__item-quantity
           color: var(--tertiary-color)
           font-family: Manrope
@@ -383,6 +401,8 @@ input[type="search"]::-webkit-search-cancel-button
 .dropdown-toggle:after
   display: none
 
+.selected-color
+  color: var(--primary-color)
   // .dropdown-toggle:after
   //   font-family: FontAwesome
   //   content: "\f107"

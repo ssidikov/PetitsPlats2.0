@@ -84,7 +84,7 @@ function updateSelectedOptions(
 ) {
   const container = document.getElementById(containerId);
   container.innerHTML = selectedArray
-    .map((option) => `<div class="selected-option">${option} <i class="bi bi-x"></i></div>`)
+    .map((option) => `<div class="selected-option">${option} <i class="bi bi-x-lg"></i></div>`)
     .join("");
 
   container.querySelectorAll(".selected-option i").forEach((button, i) => {
