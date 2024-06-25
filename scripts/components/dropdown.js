@@ -84,38 +84,14 @@ export function generateOptions(items) {
     .join("");
 }
 
-// function setDropdownOptions(id, items) {
-//   const list = document.querySelector(id);
-//   if (list) {
-//     list.innerHTML = ""; // Clear existing options
-//     list.innerHTML += generateOptions(items);
-//   }
-// }
-
-// export function initIngredientsDropdown(ingredients) {
-//   setDropdownOptions("#ingredients-list", ingredients);
-// }
-
-// export function initAppliancesDropdown(appliances) {
-//   setDropdownOptions("#appliances-list", appliances);
-// }
-
-// export function initUtensilsDropdown(utensils) {
-//   setDropdownOptions("#utensils-list", utensils);
-// }
-
 export function appendDropdownOptions(selector, options) {
   const element = document.getElementById(selector);
   if (element) {
-    const inputElement = element.querySelector("input");
+    // const inputElement = element.querySelector("input");
 
     // Remove all elements after the search input
-    while (inputElement.nextSibling) {
-      inputElement.nextSibling.remove();
-    }
-
-    // Add new options after the search input
-    inputElement.insertAdjacentHTML("afterend", options);
+    const ulElement = element.querySelector("ul");
+    ulElement.innerHTML = options;
   }
 }
 
