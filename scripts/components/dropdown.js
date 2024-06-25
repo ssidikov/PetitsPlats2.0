@@ -90,7 +90,7 @@ export function appendDropdownOptions(selector, options) {
     // const inputElement = element.querySelector("input");
 
     // Remove all elements after the search input
-    const ulElement = element.querySelector("ul");
+    const ulElement = element.querySelector(".dropdown-options");
     ulElement.innerHTML = options;
   }
 }

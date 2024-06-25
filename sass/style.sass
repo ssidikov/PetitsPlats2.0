@@ -34,6 +34,11 @@ $background-color: #ededed
   @media screen and (max-width: #{$breakpoint-lg})
     @content
 
+@mixin flex-center
+  display: flex
+  justify-content: center
+  align-items: center
+
 // Global Styles
 html, body
   scroll-behavior: smooth
@@ -55,10 +60,8 @@ ul
       justify-content: center
 
   .hero
-    display: flex
+    @include flex-center
     flex-direction: column
-    justify-content: center
-    align-items: center
     margin-top: 12vh
     margin-bottom: 14.5vh
 
@@ -70,11 +73,10 @@ ul
       margin-bottom: 30px
 
     &-form
-      display: flex
-      justify-content: center
-      align-items: center
+      @include flex-center
       width: 75%
       position: relative
+
       @include mobile-version
         width: 100%
 
@@ -116,10 +118,10 @@ ul
 
 // Filter Section Styles
 .filter
-  margin: 22px 0 43px
-  display: flex
+  @include flex-center
   justify-content: space-between
-  align-items: center
+  margin: 22px 0 43px
+
   @include tablet-version
     flex-direction: column
 
@@ -127,26 +129,26 @@ ul
     display: flex
     justify-content: space-between
     flex-direction: column
+
     @include mobile-version
       width: 100%
 
       &__options
-        display: flex
+        @include flex-center
         flex-direction: column
-        align-items: center
 
   &-options
     min-width: 195px
     display: inline-block
     margin: 0 66px 20px 0
+
     @include mobile-version
       margin-right: 0
 
   &-button
-    display: flex
+    @include flex-center
     justify-content: space-between
     padding: 17px 16px
-    align-items: center
     border-radius: 11px
     background: $white-color
     color: $secondary-color
@@ -176,12 +178,11 @@ ul
     max-width: 195px
     z-index: 1
     background-color: $white-color
-    border-radius: 0 0 10px 10px
+    border-radius: 0 0 11px 11px
     border: none
     padding: 0
 
   .dropdown-item
-    font-family: Manrope
     color: $secondary-color
     padding: 7px 16px
     font-size: 14px
@@ -208,6 +209,7 @@ ul
     max-width: 100%
     transform: translateY(20px)
     animation: slideIn 0.5s ease forwards
+
     @include mobile-version
       display: grid
       grid-template-columns: 1fr 1fr
@@ -227,11 +229,13 @@ ul
       margin-left: 20px
       cursor: pointer
       float: right
+
       @include mobile-version
         margin-left: 5px
 
     &::first-letter
       text-transform: uppercase
+
     @include mobile-version
       font-size: 11px
       padding: 13px
@@ -247,9 +251,16 @@ ul
     font-size: 21px
     font-weight: 400
     line-height: normal
+
     @include mobile-version
-      // display: inline-flex !important
       align-self: center
+
+  .sticky
+    position: -webkit-sticky
+    position: sticky
+    background-color: $white-color
+    top: 0
+    padding: 0 0 10px
 
   .form-control
     margin: 0 15px
@@ -259,17 +270,6 @@ ul
     border: 1px solid $light-grey
     border-radius: 2px
     color: $tertiary-color
-    // width: 163px
-    // height: 36px
-    // border-radius: 5px
-    // height: 36px
-    // position: relative
-    // padding-right: 30px
-    // padding-left: 10px
-
-    // display: block
-    // width: calc(100% - 30px)
-    // margin: 0 15px 15px 15px
 
     &:focus
       box-shadow: none
@@ -285,22 +285,19 @@ ul
       border-radius: 0 0 10px 10px
 
     .dropdown-menu li:hover
-      background-color: #ffc107 !important
+      background-color: $primary-color !important
 
 .recipes
-  margin-bottom: 7vh
+  margin-bottom: 12vh
 
   &-cards
     @include desktop-version
       display: grid
       grid-template-columns: 1fr 1fr
       gap: 20px
+
     @include mobile-version
       grid-template-columns: 1fr
-
-    .recipes-card
-      @include desktop-version
-        width: 100%
 
   &-cards__error-message
     display: none
@@ -314,10 +311,15 @@ ul
   &-card
     margin-bottom: 4.5vh
 
+    @include desktop-version
+      width: 100%
+
   .recipe-card
     position: relative
     border: none
     box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04)
+    background-color: $white-color
+    border-radius: 21px
     transform: translateY(20px)
     animation: slideIn 0.5s ease forwards
 
@@ -328,7 +330,6 @@ ul
       background-color: $primary-color
       color: $secondary-color
       font-size: 12px
-      font-family: Manrope, sans-serif
       font-style: normal
       font-weight: 400
       line-height: normal
@@ -339,6 +340,7 @@ ul
       &-img-top
         height: 253px
         object-fit: cover
+        border-radius: 21px 21px 0 0
 
       &-body
         padding: 32px 25px
@@ -352,7 +354,6 @@ ul
       &-description
         &__name
           color: $tertiary-color
-          font-family: Manrope
           font-size: 12px
           font-style: normal
           font-weight: 700
@@ -362,7 +363,6 @@ ul
 
         &__text
           color: $secondary-color
-          font-family: Manrope
           font-size: 14px
           font-style: normal
           font-weight: 400
@@ -379,7 +379,6 @@ ul
 
         &__item-ingredients
           color: $secondary-color
-          font-family: Manrope
           font-size: 14px
           font-style: normal
           font-weight: 500
@@ -388,7 +387,6 @@ ul
 
         &__item-quantity
           color: $tertiary-color
-          font-family: Manrope
           font-size: 14px
           font-style: normal
           font-weight: 400
@@ -402,13 +400,3 @@ ul
   100%
     opacity: 1
     transform: translateY(0)
-
-.selected-color
-  color: $primary-color
-
-.sticky
-  position: -webkit-sticky
-  position: sticky
-  background-color: $white-color
-  top: 0
-  padding: 0 0 10px
