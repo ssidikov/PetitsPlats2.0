@@ -89,7 +89,7 @@ ul {
 }
 @media screen and (max-width: 992px) {
   .filter {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 }
 .filter-bar {
@@ -211,6 +211,11 @@ ul {
   font-size: 21px;
   font-weight: 400;
   line-height: normal;
+}
+@media screen and (max-width: 768px) {
+  .filter-number {
+    align-self: flex !important;
+  }
 }
 .filter .form-control {
   margin: 0 15px;

@@ -101,7 +101,7 @@ ul
   justify-content: space-between
   align-items: center
   @include tablet-version
-    flex-direction: column-reverse
+    flex-direction: column
   &-bar
     display: flex
     justify-content: space-between
@@ -231,6 +231,8 @@ ul
     font-size: 21px
     font-weight: 400
     line-height: normal
+    @include mobile-version
+      align-self: flex !important
 
   .form-control
     // width: 100%
