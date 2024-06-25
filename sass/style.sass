@@ -206,18 +206,19 @@ ul
       gap: 10px
 
   .selected-option
-    display: inline-block
+    display: flex
+    justify-content: space-between
     background-color: var(--primary-color)
     border-radius: 10px
     padding: 17px 18px
-    gap: 60px
+    // gap: 60px
     font-size: 14px
     font-weight: bold
     &::first-letter
       text-transform: uppercase
 
     i
-      margin-left: 60px
+      margin-left: 20px
       cursor: pointer
 
   &-number
