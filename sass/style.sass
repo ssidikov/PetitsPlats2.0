@@ -221,6 +221,8 @@ ul
     max-width: 100%
     transform: translateY(20px)
     animation: slideIn 0.5s ease forwards
+    @include mobile-version
+      width: 100%
 
     @include mobile-version
       display: grid
@@ -235,7 +237,7 @@ ul
     padding: 17px 18px
     gap: 60px
     font-size: 14px
-    font-weight: bold
+    font-weight: 400
 
     i
       margin-left: 20px

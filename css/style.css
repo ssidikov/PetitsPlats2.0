@@ -206,6 +206,11 @@ ul {
 }
 @media screen and (max-width: 768px) {
   .filter .selected-options {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .filter .selected-options {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
@@ -219,7 +224,7 @@ ul {
   padding: 17px 18px;
   gap: 60px;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 400;
 }
 .filter .selected-option i {
   margin-left: 20px;
