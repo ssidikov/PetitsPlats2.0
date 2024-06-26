@@ -6,9 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="assets/logo/favicon.png" type="image/x-icon">
   <title>Les Petit Plats</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -16,18 +13,20 @@
   <!-- Header -->
   <header class="header py-5">
     <div class="container text-center">
-      <nav class="navbar">
-        <a class="navbar-brand" href="#">
-          <img src="assets/logo/logo.svg" alt="Les Petit Plats" width="207" height="25">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="index.html">
+          <img src="assets/logo/logo.svg" class="logo" alt="Les Petit Plats">
         </a>
       </nav>
-      <div class="hero col container-fluid text-center">
+      <div class="hero text-center">
         <h1 class="hero-title">CHERCHEZ PARMI PLUS DE 1500 RECETTES <br> DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES</h1>
-        <form class="hero-form row">
-          <input type="search" class="hero-form-input col-8 border-0" aria-label="search"
-            placeholder="Rechercher une recette, un ingrédient, ..." maxlength="30">
-          <button class="hero-form-button position-relative" type="submit">
-            <i class="bi bi-search"></i>
+        <form class="hero-form" role="search">
+          <label for="search-input" class="visually-hidden">Rechercher</label>
+          <input id="search-input" type="search" class="hero-form__input"
+            aria-label="Rechercher une recette, un ingrédient" placeholder="Rechercher une recette, un ingrédient, ..."
+            maxlength="30">
+          <button class="hero-form-button position-absolute" type="submit" aria-label="Rechercher">
+            <i class="bi bi-search" aria-hidden="true"></i>
           </button>
         </form>
       </div>
@@ -36,47 +35,71 @@
   <!-- Main -->
   <main class="main">
     <div class="container">
-      <section class="filter d-flex justify-content-between align-items-center">
-        <div class="filter-bar d-flex justify-content-between">
-          <div class="filter-options dropdown">
-            <button class="filter-button btn dropdown-toggle" type="button" id="ingredientsDropdown"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Ingrédients
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="ingredientsDropdown" id="ingredients-list">
-              <input type="text" class="form-control mb-2" placeholder="Rechercher...">
-              <!-- dynamic options will be appended here -->
-            </ul>
-            <div id="selected-ingredients" class="selected-options"></div>
+      <section class="filter" aria-labelledby="filter-heading">
+        <h2 id="filter-heading" class="visually-hidden">Filtrer les recettes</h2>
+        <div class="filter-bar">
+          <div class="filter-bar__options">
+            <div class="filter-options dropdown">
+              <button class="filter-button dropdown-toggle" type="button" id="ingredientsDropdown" aria-expanded="false"
+                aria-haspopup="true">
+                Ingrédients
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="ingredientsDropdown" id="ingredients-list">
+                <div class="sticky">
+                  <label for="ingredients-search" class="visually-hidden">Rechercher ingrédients</label>
+                  <input id="ingredients-search" type="text" class="form-control mb-2" placeholder="Rechercher...">
+                </div>
+                <ul class="dropdown-options" role="listbox">
+                  <!-- dynamic options will be appended here -->
+                </ul>
+              </div>
+            </div>
+            <div class="filter-options dropdown">
+              <button class="filter-button dropdown-toggle" type="button" id="appliancesDropdown" aria-expanded="false"
+                aria-haspopup="true">
+                Appareils
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="appliancesDropdown" id="appliances-list">
+                <div class="sticky">
+                  <label for="appliances-search" class="visually-hidden">Rechercher appareils</label>
+                  <input id="appliances-search" type="text" class="form-control mb-2" placeholder="Rechercher...">
+                </div>
+                <ul class="dropdown-options" role="listbox">
+                  <!-- dynamic options will be appended here -->
+                </ul>
+              </div>
+            </div>
+            <div class="filter-options dropdown">
+              <button class="filter-button dropdown-toggle" type="button" id="utensilsDropdown" aria-expanded="false"
+                aria-haspopup="true">
+                Ustensiles
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="utensilsDropdown" id="utensils-list">
+                <div class="sticky">
+                  <label for="utensils-search" class="visually-hidden">Rechercher ustensiles</label>
+                  <input id="utensils-search" type="text" class="form-control mb-2" placeholder="Rechercher...">
+                </div>
+                <ul class="dropdown-options" role="listbox">
+                  <!-- dynamic options will be appended here -->
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="filter-options dropdown">
-            <button class="filter-button btn dropdown-toggle" type="button" id="appliancesDropdown"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Appareils
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="appliancesDropdown" id="appliances-list">
-              <input type="text" class="form-control mb-2" placeholder="Rechercher...">
-              <!-- dynamic options will be appended here -->
-            </ul>
-            <div id="selected-appliances" class="selected-options"></div>
-          </div>
-          <div class="filter-options dropdown">
-            <button class="filter-button btn dropdown-toggle" type="button" id="utensilsDropdown"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Ustensiles
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="utensilsDropdown" id="utensils-list">
-              <input type="text" class="form-control mb-2" placeholder="Rechercher...">
-              <!-- dynamic options will be appended here -->
-            </ul>
-            <div id="selected-utensils" class="selected-options"></div>
+          <div class="options-bar">
+            <div id="selected-ingredients" class="selected-options" aria-live="polite"></div>
+            <div id="selected-appliances" class="selected-options" aria-live="polite"></div>
+            <div id="selected-utensils" class="selected-options" aria-live="polite"></div>
           </div>
         </div>
-        <p class="filter-number align-self-center"></p>
+        <p class="filter-number" aria-live="polite"></p>
       </section>
-      <section class="recipes">
-        <div id="error-message" class="recipes-cards__error-message"></div>
-        <div class="recipes-cards row">
+      <section class="recipes" aria-labelledby="recipes-heading">
+        <h2 id="recipes-heading" class="visually-hidden">Recettes</h2>
+        <div id="error-message" class="recipes-cards__error-message" role="alert"></div>
+        <div class="recipes-cards row" role="list">
           <!-- recipe Cards will be dynamically inserted here -->
         </div>
       </section>

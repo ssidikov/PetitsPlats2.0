@@ -13,7 +13,7 @@ import {
   updateRecipeCount,
 } from "../events/eventHandlers.js";
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   displayRecipes(recipes);
   updateRecipeCount(recipes.length);
 
@@ -24,13 +24,12 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateDropdownOptions(filteredRecipes) {
     const { ingredients, appliances, utensils } = getUniqueOptions(filteredRecipes);
 
-    appendDropdownOptions("ingredients-list", generateOptions(ingredients));
-    appendDropdownOptions("appliances-list", generateOptions(appliances));
-    appendDropdownOptions("utensils-list", generateOptions(utensils));
+    appendDropdownOptions("ingredients-list", generateOptions(ingredients, selectedIngredients));
+    appendDropdownOptions("appliances-list", generateOptions(appliances, selectedAppliances));
+    appendDropdownOptions("utensils-list", generateOptions(utensils, selectedUtensils));
   }
 
-  const searchInput = document.querySelector(".hero-form-input");
-
+  const searchInput = document.querySelector(".hero-form__input");
   addSearchEventHandler(
     searchInput,
     recipes,
@@ -81,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateRecipeCount,
     updateDropdownOptions
   );
+
   initDropdowns();
   updateDropdownOptions(recipes);
 });

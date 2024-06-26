@@ -46,21 +46,48 @@ export function addDropdownEventListeners(
 ) {
   const dropdown = document.getElementById(dropdownId);
   dropdown.addEventListener("click", (event) => {
-    const option = event.target.textContent;
-    if (!selectedArray.includes(option)) {
-      selectedArray.push(option);
-      updateSelectedOptions(
-        selectedContainerId,
-        selectedArray,
-        recipes,
-        searchInput,
-        selectedIngredients,
-        selectedAppliances,
-        selectedUtensils,
-        displayRecipes,
-        updateRecipeCount,
-        updateDropdownOptions
-      );
+    event.preventDefault();
+    if (event.target.classList.contains("dropdown-item__remove")) {
+      // Remove the option when clicking on the "x" icon
+      const optionElement = event.target.parentElement;
+      const optionText = optionElement.textContent.trim();
+      const index = selectedArray.indexOf(optionText);
+      if (index !== -1) {
+        selectedArray.splice(index, 1);
+        optionElement.remove(); // Remove the selected option element
+        updateSelectedOptions(
+          selectedContainerId,
+          selectedArray,
+          recipes,
+          searchInput,
+          selectedIngredients,
+          selectedAppliances,
+          selectedUtensils,
+          displayRecipes,
+          updateRecipeCount,
+          updateDropdownOptions
+        );
+      }
+    } else if (event.target.classList.contains("dropdown-item")) {
+      // Add the option when clicking on the dropdown item
+      const optionText = event.target.textContent.trim();
+      const isSelected = selectedArray.includes(optionText);
+
+      if (!isSelected) {
+        selectedArray.push(optionText);
+        updateSelectedOptions(
+          selectedContainerId,
+          selectedArray,
+          recipes,
+          searchInput,
+          selectedIngredients,
+          selectedAppliances,
+          selectedUtensils,
+          displayRecipes,
+          updateRecipeCount,
+          updateDropdownOptions
+        );
+      }
     }
   });
 }
@@ -79,15 +106,11 @@ function updateSelectedOptions(
   updateDropdownOptions
 ) {
   const container = document.getElementById(containerId);
-  container.innerHTML = "";
-  for (let i = 0; i < selectedArray.length; i++) {
-    const option = selectedArray[i];
-    container.innerHTML += `<div class="selected-option">${option} <i class="bi bi-x"></i></div>`;
-  }
+  container.innerHTML = selectedArray
+    .map((option) => `<div class="selected-option">${option} <i class="bi bi-x-lg"></i></div>`)
+    .join("");
 
-  const removeButtons = container.querySelectorAll(".selected-option i");
-  for (let i = 0; i < removeButtons.length; i++) {
-    const button = removeButtons[i];
+  container.querySelectorAll(".selected-option i").forEach((button, i) => {
     button.addEventListener("click", function () {
       selectedArray.splice(i, 1);
       updateSelectedOptions(
@@ -103,7 +126,7 @@ function updateSelectedOptions(
         updateDropdownOptions
       );
     });
-  }
+  });
 
   const keyword = searchInput.value.trim().toLowerCase();
   const filteredRecipes = filterRecipes(
@@ -133,9 +156,7 @@ export function displayRecipes(recipes, keyword) {
     if (errorMessage) {
       errorMessage.style.display = "none";
     }
-    for (const recipe of recipes) {
-      recipeCards.innerHTML += createRecipeCard(recipe).outerHTML;
-    }
+    recipeCards.innerHTML = recipes.map((recipe) => createRecipeCard(recipe).outerHTML).join("");
   }
 }
 
@@ -144,6 +165,8 @@ export function updateRecipeCount(count) {
   if (count === 0) {
     filterNumberElement.textContent = "Aucune recette trouvée pour votre recherche";
   } else {
-    filterNumberElement.textContent = `${count} recettes`;
+    // Formatting of the number with leading zeros up to two digits
+    const formattedCount = String(count).padStart(2, "0");
+    filterNumberElement.textContent = `${formattedCount} recettes`;
   }
 }

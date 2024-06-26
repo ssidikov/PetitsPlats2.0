@@ -1,66 +1,98 @@
-// scripts/components/dropdown.js
-
 export function initDropdowns() {
   const dropdownButtons = document.querySelectorAll(".dropdown-toggle");
 
   dropdownButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const dropdownMenu = button.nextElementSibling;
-
-      if (dropdownMenu.classList.contains("show")) {
-        dropdownMenu.classList.remove("show");
-        button.setAttribute("aria-expanded", "false");
-      } else {
-        // Close all other dropdown menus
-        document.querySelectorAll(".dropdown-menu").forEach((menu) => {
-          menu.classList.remove("show");
-        });
-        document.querySelectorAll(".dropdown-toggle").forEach((btn) => {
-          btn.setAttribute("aria-expanded", "false");
-        });
-
-        // Open the clicked dropdown menu
-        dropdownMenu.classList.add("show");
-        button.setAttribute("aria-expanded", "true");
-      }
-    });
+    button.addEventListener("click", () => toggleDropdown(button));
   });
 
-  // Close dropdown if clicked outside
-  document.addEventListener("click", function (event) {
-    if (!event.target.closest(".dropdown")) {
-      document.querySelectorAll(".dropdown-menu").forEach((menu) => {
-        menu.classList.remove("show");
-      });
-      document.querySelectorAll(".dropdown-toggle").forEach((btn) => {
-        btn.setAttribute("aria-expanded", "false");
-      });
+  function toggleDropdown(button) {
+    const dropdownMenu = button.nextElementSibling;
+
+    if (dropdownMenu.classList.contains("show")) {
+      closeDropdown(button, dropdownMenu);
+    } else {
+      closeAllDropdowns();
+      openDropdown(button, dropdownMenu);
     }
-  });
+  }
+
+  function openDropdown(button, dropdownMenu) {
+    const input = dropdownMenu.querySelector(".form-control");
+
+    dropdownMenu.classList.add("show");
+    button.classList.add("open");
+    button.setAttribute("aria-expanded", "true");
+
+    if (input && !input.hasAttribute("data-filter-applied")) {
+      input.focus();
+      input.value = "";
+      applyFilter(input, dropdownMenu);
+      input.setAttribute("data-filter-applied", "true");
+    }
+    input.focus();
+    input.value = "";
+    applyFilter(input, dropdownMenu);
+  }
+
+  function applyFilter(input, dropdownMenu) {
+    input.addEventListener("input", () => {
+      const filter = input.value.trim().toLowerCase();
+      const items = dropdownMenu.querySelectorAll(".dropdown-item");
+
+      items.forEach((item) => {
+        const text = item.textContent.trim().toLowerCase();
+        item.style.display = text.includes(filter) ? "" : "none";
+      });
+    });
+  }
+
+  function closeDropdown(button, dropdownMenu) {
+    dropdownMenu.classList.remove("show");
+    button.classList.remove("open");
+    button.setAttribute("aria-expanded", "false");
+    resetFilter(dropdownMenu);
+  }
+
+  function resetFilter(dropdownMenu) {
+    const items = dropdownMenu.querySelectorAll(".dropdown-item");
+    items.forEach((item) => {
+      item.style.display = "";
+    });
+  }
+
+  function closeAllDropdowns() {
+    document.querySelectorAll(".dropdown-menu").forEach((menu) => {
+      menu.classList.remove("show");
+      resetFilter(menu);
+    });
+    document.querySelectorAll(".dropdown-toggle").forEach((btn) => {
+      btn.classList.remove("open");
+      btn.setAttribute("aria-expanded", "false");
+    });
+  }
 }
 
-export function generateOptions(items) {
-  const uniqueItems = Array.from(new Set(items)); // Remove duplicates using a Set
-  let options = "";
-  for (let i = 0; i < uniqueItems.length; i++) {
-    const item = uniqueItems[i];
-    options += `<li><a class="dropdown-item" href="#">${item}</a></li>`;
-  }
-  return options;
+function sortAlphabetically(array) {
+  return array.sort((a, b) => a.localeCompare(b));
+}
+
+export function generateOptions(items, selectedArray = []) {
+  const uniqueItems = [...new Set(items)];
+  const sortedItems = sortAlphabetically(uniqueItems);
+  return sortedItems
+    .map((item) => {
+      const isSelected = selectedArray.includes(item) ? "selected" : "";
+      const icon = isSelected ? '<i class="dropdown-item__remove bi bi-x-circle-fill"></i>' : "";
+      return `<li><a class="dropdown-item ${isSelected}" href="#">${item} ${icon}</a></li>`;
+    })
+    .join("");
 }
 
 export function appendDropdownOptions(selector, options) {
   const element = document.getElementById(selector);
   if (element) {
-    const inputElement = element.querySelector("input");
-
-    // Clean all elements after search input
-    while (inputElement.nextSibling) {
-      element.removeChild(inputElement.nextSibling);
-    }
-
-    // Add new options after the search input
-    inputElement.insertAdjacentHTML("afterend", options);
+    const ulElement = element.querySelector(".dropdown-options");
+    ulElement.innerHTML = options;
   }
 }
 
@@ -69,19 +101,15 @@ export function getUniqueOptions(recipes) {
   const appliances = new Set();
   const utensils = new Set();
 
-  for (const recipe of recipes) {
-    for (const ing of recipe.ingredients) {
-      ingredients.add(ing.ingredient.toLowerCase());
-    }
+  recipes.forEach((recipe) => {
+    recipe.ingredients.forEach((ing) => ingredients.add(ing.ingredient.toLowerCase()));
     appliances.add(recipe.appliance.toLowerCase());
-    for (const ut of recipe.ustensils) {
-      utensils.add(ut.toLowerCase());
-    }
-  }
+    recipe.ustensils.forEach((ut) => utensils.add(ut.toLowerCase()));
+  });
 
   return {
-    ingredients: Array.from(ingredients),
-    appliances: Array.from(appliances),
-    utensils: Array.from(utensils),
+    ingredients: [...ingredients],
+    appliances: [...appliances],
+    utensils: [...utensils],
   };
 }
