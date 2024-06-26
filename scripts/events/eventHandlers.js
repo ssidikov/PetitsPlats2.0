@@ -46,6 +46,7 @@ export function addDropdownEventListeners(
 ) {
   const dropdown = document.getElementById(dropdownId);
   dropdown.addEventListener("click", (event) => {
+    event.preventDefault();
     if (event.target.classList.contains("dropdown-item__remove")) {
       // Remove the option when clicking on the "x" icon
       const optionElement = event.target.parentElement;
