@@ -2,9 +2,7 @@
 
 export function createRecipeCard(data) {
   const { id, image, name, ingredients, time, description } = data;
-
   const imageSrc = `./assets/images/${image}`;
-  const recipeCards = document.querySelector(".recipes-cards");
 
   const card = document.createElement("article");
   card.id = `recipe-${id}`;
@@ -30,23 +28,17 @@ export function createRecipeCard(data) {
         </div>
       </div>
     </div>`;
-
-  recipeCards.appendChild(card);
   return card;
 }
 
-// Generate the list of ingredients
 function generateIngredientsList(ingredients) {
-  let result = "";
-  for (let i = 0; i < ingredients.length; i++) {
-    const ingredientsList = ingredients[i];
-    result += `
-      <li class="card-description__item">
-        <p class="card-description__item-ingredients">${ingredientsList.ingredient}</p>
-        <p class="card-description__item-quantity">${ingredientsList.quantity || ""} ${
-      ingredientsList.unit || ""
-    }</p>
-      </li>`;
-  }
-  return result;
+  return ingredients
+    .map(
+      ({ ingredient, quantity = "", unit = "" }) => `
+    <li class="card-description__item">
+      <p class="card-description__item-ingredients">${ingredient}</p>
+      <p class="card-description__item-quantity">${quantity} ${unit}</p>
+    </li>`
+    )
+    .join("");
 }
