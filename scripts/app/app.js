@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateDropdownOptions(filteredRecipes) {
     const { ingredients, appliances, utensils } = getUniqueOptions(filteredRecipes);
 
-    appendDropdownOptions("ingredients-list", generateOptions(ingredients));
-    appendDropdownOptions("appliances-list", generateOptions(appliances));
-    appendDropdownOptions("utensils-list", generateOptions(utensils));
+    appendDropdownOptions("ingredients-list", generateOptions(ingredients, selectedIngredients));
+    appendDropdownOptions("appliances-list", generateOptions(appliances, selectedAppliances));
+    appendDropdownOptions("utensils-list", generateOptions(utensils, selectedUtensils));
   }
 
   const searchInput = document.querySelector(".hero-form__input");

@@ -1,5 +1,3 @@
-// dropdown.js
-
 export function initDropdowns() {
   const dropdownButtons = document.querySelectorAll(".dropdown-toggle");
 
@@ -25,11 +23,15 @@ export function initDropdowns() {
     button.classList.add("open");
     button.setAttribute("aria-expanded", "true");
 
-    if (input) {
+    if (input && !input.hasAttribute("data-filter-applied")) {
       input.focus();
       input.value = "";
       applyFilter(input, dropdownMenu);
+      input.setAttribute("data-filter-applied", "true");
     }
+    input.focus();
+    input.value = "";
+    applyFilter(input, dropdownMenu);
   }
 
   function applyFilter(input, dropdownMenu) {
@@ -74,11 +76,14 @@ function sortAlphabetically(array) {
   return array.sort((a, b) => a.localeCompare(b));
 }
 
-export function generateOptions(items) {
+export function generateOptions(items, selectedArray = []) {
   const uniqueItems = [...new Set(items)];
   const sortedItems = sortAlphabetically(uniqueItems);
   return sortedItems
-    .map((item) => `<li><a class="dropdown-item" href="#">${item}</a></li>`)
+    .map((item) => {
+      const isSelected = selectedArray.includes(item) ? "selected" : "";
+      return `<li><a class="dropdown-item ${isSelected}" href="#">${item}</a></li>`;
+    })
     .join("");
 }
 

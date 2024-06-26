@@ -46,25 +46,35 @@ export function addDropdownEventListeners(
 ) {
   const dropdown = document.getElementById(dropdownId);
   dropdown.addEventListener("mousedown", (event) => {
-    // Check if the clicked element has the class 'dropdown-item'
     if (event.target.classList.contains("dropdown-item")) {
       const option = event.target.textContent.trim();
+      const isSelected = selectedArray.includes(option);
 
-      if (!selectedArray.includes(option)) {
+      if (!isSelected) {
         selectedArray.push(option);
-        updateSelectedOptions(
-          selectedContainerId,
-          selectedArray,
-          recipes,
-          searchInput,
-          selectedIngredients,
-          selectedAppliances,
-          selectedUtensils,
-          displayRecipes,
-          updateRecipeCount,
-          updateDropdownOptions
-        );
+        event.target.classList.add("selected");
+        if (!event.target.querySelector("i")) {
+          event.target.innerHTML += ` <i class="bi bi-x-lg"></i>`;
+        }
+      } else {
+        selectedArray.splice(selectedArray.indexOf(option), 1);
+        event.target.classList.remove("selected");
+        const icon = event.target.querySelector("i");
+        if (icon) icon.remove();
       }
+
+      updateSelectedOptions(
+        selectedContainerId,
+        selectedArray,
+        recipes,
+        searchInput,
+        selectedIngredients,
+        selectedAppliances,
+        selectedUtensils,
+        displayRecipes,
+        updateRecipeCount,
+        updateDropdownOptions
+      );
     }
   });
 }
