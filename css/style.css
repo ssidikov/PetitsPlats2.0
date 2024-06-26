@@ -169,7 +169,7 @@ ul {
 }
 .filter .dropdown-item {
   color: #1b1b1b;
-  padding: 7px 16px;
+  padding: 9px 16px;
   font-size: 14px;
   min-width: 195px;
   white-space: normal;
@@ -179,15 +179,17 @@ ul {
   background-color: #ffd15b !important;
   color: #1b1b1b;
 }
+.filter .dropdown-item__remove {
+  cursor: pointer;
+  margin-left: 10px;
+  float: right;
+}
 .filter ::first-letter {
   text-transform: uppercase;
 }
 .filter .selected {
   background-color: #ffd15b;
-}
-.filter .selected-option i {
-  cursor: pointer;
-  margin-left: 10px;
+  font-weight: 700;
 }
 .filter .options-bar {
   display: flex;

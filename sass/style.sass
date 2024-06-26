@@ -187,7 +187,7 @@ ul
 
   .dropdown-item
     color: $secondary-color
-    padding: 7px 16px
+    padding: 9px 16px
     font-size: 14px
     min-width: 195px
     white-space: normal
@@ -197,15 +197,17 @@ ul
       background-color: $primary-color !important
       color: $secondary-color
 
+    &__remove
+      cursor: pointer
+      margin-left: 10px
+      float: right
+
   ::first-letter
     text-transform: uppercase
 
   .selected
     background-color: $primary-color
-
-  .selected-option i
-    cursor: pointer
-    margin-left: 10px
+    font-weight: 700
 
   .options-bar
     display: flex

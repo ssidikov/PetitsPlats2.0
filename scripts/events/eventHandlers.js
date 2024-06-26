@@ -45,36 +45,48 @@ export function addDropdownEventListeners(
   updateDropdownOptions
 ) {
   const dropdown = document.getElementById(dropdownId);
-  dropdown.addEventListener("mousedown", (event) => {
-    if (event.target.classList.contains("dropdown-item")) {
-      const option = event.target.textContent.trim();
-      const isSelected = selectedArray.includes(option);
+  dropdown.addEventListener("click", (event) => {
+    if (event.target.classList.contains("dropdown-item__remove")) {
+      // Remove the option when clicking on the "x" icon
+      const optionElement = event.target.parentElement;
+      const optionText = optionElement.textContent.trim();
+      const index = selectedArray.indexOf(optionText);
+      if (index !== -1) {
+        selectedArray.splice(index, 1);
+        optionElement.remove(); // Remove the selected option element
+        updateSelectedOptions(
+          selectedContainerId,
+          selectedArray,
+          recipes,
+          searchInput,
+          selectedIngredients,
+          selectedAppliances,
+          selectedUtensils,
+          displayRecipes,
+          updateRecipeCount,
+          updateDropdownOptions
+        );
+      }
+    } else if (event.target.classList.contains("dropdown-item")) {
+      // Add the option when clicking on the dropdown item
+      const optionText = event.target.textContent.trim();
+      const isSelected = selectedArray.includes(optionText);
 
       if (!isSelected) {
-        selectedArray.push(option);
-        event.target.classList.add("selected");
-        if (!event.target.querySelector("i")) {
-          event.target.innerHTML += ` <i class="bi bi-x-lg"></i>`;
-        }
-      } else {
-        selectedArray.splice(selectedArray.indexOf(option), 1);
-        event.target.classList.remove("selected");
-        const icon = event.target.querySelector("i");
-        if (icon) icon.remove();
+        selectedArray.push(optionText);
+        updateSelectedOptions(
+          selectedContainerId,
+          selectedArray,
+          recipes,
+          searchInput,
+          selectedIngredients,
+          selectedAppliances,
+          selectedUtensils,
+          displayRecipes,
+          updateRecipeCount,
+          updateDropdownOptions
+        );
       }
-
-      updateSelectedOptions(
-        selectedContainerId,
-        selectedArray,
-        recipes,
-        searchInput,
-        selectedIngredients,
-        selectedAppliances,
-        selectedUtensils,
-        displayRecipes,
-        updateRecipeCount,
-        updateDropdownOptions
-      );
     }
   });
 }

@@ -82,7 +82,8 @@ export function generateOptions(items, selectedArray = []) {
   return sortedItems
     .map((item) => {
       const isSelected = selectedArray.includes(item) ? "selected" : "";
-      return `<li><a class="dropdown-item ${isSelected}" href="#">${item}</a></li>`;
+      const icon = isSelected ? '<i class="dropdown-item__remove bi bi-x-circle-fill"></i>' : "";
+      return `<li><a class="dropdown-item ${isSelected}" href="#">${item} ${icon}</a></li>`;
     })
     .join("");
 }
