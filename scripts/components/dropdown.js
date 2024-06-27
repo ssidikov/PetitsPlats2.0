@@ -23,26 +23,24 @@ export function initDropdowns() {
     button.classList.add("open");
     button.setAttribute("aria-expanded", "true");
 
-    if (input && !input.hasAttribute("data-filter-applied")) {
+    if (input) {
+      if (!input.hasAttribute("data-filter-applied")) {
+        input.setAttribute("data-filter-applied", "true");
+        input.addEventListener("input", () => filterItems(input, dropdownMenu));
+      }
       input.focus();
       input.value = "";
-      applyFilter(input, dropdownMenu);
-      input.setAttribute("data-filter-applied", "true");
+      filterItems(input, dropdownMenu);
     }
-    input.focus();
-    input.value = "";
-    applyFilter(input, dropdownMenu);
   }
 
-  function applyFilter(input, dropdownMenu) {
-    input.addEventListener("input", () => {
-      const filter = input.value.trim().toLowerCase();
-      const items = dropdownMenu.querySelectorAll(".dropdown-item");
+  function filterItems(input, dropdownMenu) {
+    const filter = input.value.trim().toLowerCase();
+    const items = dropdownMenu.querySelectorAll(".dropdown-item");
 
-      items.forEach((item) => {
-        const text = item.textContent.trim().toLowerCase();
-        item.style.display = text.includes(filter) ? "" : "none";
-      });
+    items.forEach((item) => {
+      const text = item.textContent.trim().toLowerCase();
+      item.style.display = text.includes(filter) ? "" : "none";
     });
   }
 
@@ -79,6 +77,7 @@ function sortAlphabetically(array) {
 export function generateOptions(items, selectedArray = []) {
   const uniqueItems = [...new Set(items)];
   const sortedItems = sortAlphabetically(uniqueItems);
+
   return sortedItems
     .map((item) => {
       const isSelected = selectedArray.includes(item) ? "selected" : "";
