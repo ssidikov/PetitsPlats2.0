@@ -7,6 +7,7 @@ export function createRecipeCard(data) {
   const card = document.createElement("article");
   card.id = `recipe-${id}`;
   card.classList.add("recipes-card", "col-md-4");
+  card.role = "listitem";
 
   card.innerHTML = `
     <div class="recipe-card card">
