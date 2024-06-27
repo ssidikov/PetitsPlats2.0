@@ -277,6 +277,7 @@ ul
     padding: 0 0 10px
 
   .form-control
+    position: relative
     margin: 0 15px
     height: 36px
     font-size: 14px
@@ -284,9 +285,23 @@ ul
     border: 1px solid $light-grey
     border-radius: 2px
     color: $tertiary-color
+    padding-right: 50px
 
     &:focus
       box-shadow: none
+
+    &__icon-search, &__icon-clear
+      position: absolute
+      top: 5px
+      right: 20px
+      margin-left: 10px
+      color: $tertiary-color
+      border: none
+      background: none
+
+    &__icon-clear
+      display: none
+      right: 40px
 
     .dropdown-menu
       padding: 15px 0

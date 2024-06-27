@@ -18,6 +18,7 @@ export function initDropdowns() {
 
   function openDropdown(button, dropdownMenu) {
     const input = dropdownMenu.querySelector(".form-control");
+    const clearButton = dropdownMenu.querySelector(".form-control__icon-clear");
 
     dropdownMenu.classList.add("show");
     button.classList.add("open");
@@ -27,10 +28,12 @@ export function initDropdowns() {
       if (!input.hasAttribute("data-filter-applied")) {
         input.setAttribute("data-filter-applied", "true");
         input.addEventListener("input", () => filterItems(input, dropdownMenu));
+        input.addEventListener("input", () => toggleClearButton(input, clearButton));
       }
       input.focus();
       input.value = "";
       filterItems(input, dropdownMenu);
+      toggleClearButton(input, clearButton); // Initial check for clear button visibility
     }
   }
 
@@ -68,6 +71,30 @@ export function initDropdowns() {
       btn.setAttribute("aria-expanded", "false");
     });
   }
+
+  function toggleClearButton(input, clearButton) {
+    if (input && clearButton) {
+      clearButton.style.display = input.value.trim() === "" ? "none" : "block";
+    }
+  }
+
+  // Add event listeners for clear buttons in all dropdowns
+  document.querySelectorAll(".form-control__icon-clear").forEach((clearButton) => {
+    clearButton.addEventListener("click", function () {
+      const input = clearButton.previousElementSibling;
+      if (input) {
+        input.value = "";
+        input.focus();
+        clearButton.style.display = "none";
+        // Manually trigger the input event to update the filtered items
+        const event = new Event("input", {
+          bubbles: true,
+          cancelable: true,
+        });
+        input.dispatchEvent(event);
+      }
+    });
+  });
 }
 
 function sortAlphabetically(array) {

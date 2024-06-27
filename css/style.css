@@ -269,6 +269,7 @@ ul {
   padding: 0 0 10px;
 }
 .filter .form-control {
+  position: relative;
   margin: 0 15px;
   height: 36px;
   font-size: 14px;
@@ -276,9 +277,23 @@ ul {
   border: 1px solid #c6c6c6;
   border-radius: 2px;
   color: #7a7a7a;
+  padding-right: 50px;
 }
 .filter .form-control:focus {
   box-shadow: none;
+}
+.filter .form-control__icon-search, .filter .form-control__icon-clear {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  margin-left: 10px;
+  color: #7a7a7a;
+  border: none;
+  background: none;
+}
+.filter .form-control__icon-clear {
+  display: none;
+  right: 40px;
 }
 .filter .form-control .dropdown-menu {
   padding: 15px 0;
