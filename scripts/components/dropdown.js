@@ -25,16 +25,20 @@ export function initDropdowns() {
     button.setAttribute("aria-expanded", "true");
 
     if (input) {
-      if (!input.hasAttribute("data-filter-applied")) {
-        input.setAttribute("data-filter-applied", "true");
-        input.addEventListener("input", () => filterItems(input, dropdownMenu));
-        input.addEventListener("input", () => toggleClearButton(input, clearButton));
-      }
-      input.focus();
-      input.value = "";
-      filterItems(input, dropdownMenu);
-      toggleClearButton(input, clearButton); // Initial check for clear button visibility
+      initFilter(input, dropdownMenu, clearButton);
     }
+  }
+
+  function initFilter(input, dropdownMenu, clearButton) {
+    if (!input.hasAttribute("data-filter-applied")) {
+      input.setAttribute("data-filter-applied", "true");
+      input.addEventListener("input", () => filterItems(input, dropdownMenu));
+      input.addEventListener("input", () => toggleClearButton(input, clearButton));
+    }
+    input.focus();
+    input.value = "";
+    filterItems(input, dropdownMenu);
+    toggleClearButton(input, clearButton); // Initial check for clear button visibility
   }
 
   function filterItems(input, dropdownMenu) {
@@ -97,10 +101,12 @@ export function initDropdowns() {
   });
 }
 
+// Function to sort items alphabetically
 function sortAlphabetically(array) {
   return array.sort((a, b) => a.localeCompare(b));
 }
 
+// Function to generate HTML options for dropdowns
 export function generateOptions(items, selectedArray = []) {
   const uniqueItems = [...new Set(items)];
   const sortedItems = sortAlphabetically(uniqueItems);
@@ -114,6 +120,7 @@ export function generateOptions(items, selectedArray = []) {
     .join("");
 }
 
+// Function to append options to a dropdown element
 export function appendDropdownOptions(selector, options) {
   const element = document.getElementById(selector);
   if (element) {
@@ -122,6 +129,7 @@ export function appendDropdownOptions(selector, options) {
   }
 }
 
+// Function to extract unique options from recipes
 export function getUniqueOptions(recipes) {
   const ingredients = new Set();
   const appliances = new Set();
