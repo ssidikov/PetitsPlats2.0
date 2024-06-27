@@ -1,10 +1,11 @@
-// Description: Main entry point for the application. This file is responsible for initializing the application and setting up event listeners.
+// Description: Main entry point for the application. Initializes the application and sets up event listeners.
 import { recipes } from "../../data/recipes.js";
 import {
   initDropdowns,
   generateOptions,
   appendDropdownOptions,
   getUniqueOptions,
+  createFilterOptions,
 } from "../components/dropdown.js";
 import {
   addSearchEventHandler,
@@ -14,13 +15,19 @@ import {
 } from "../events/eventHandlers.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Initial display and setup
   displayRecipes(recipes);
   updateRecipeCount(recipes.length);
 
+  // Calling the function of creating filters
+  createFilterOptions();
+
+  // Arrays for storing selected elements in dropdown
   const selectedIngredients = [];
   const selectedAppliances = [];
   const selectedUtensils = [];
 
+  // Function to update dropdown options based on filtered recipes
   function updateDropdownOptions(filteredRecipes) {
     const { ingredients, appliances, utensils } = getUniqueOptions(filteredRecipes);
 
@@ -29,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     appendDropdownOptions("utensils-list", generateOptions(utensils, selectedUtensils));
   }
 
+  // Event handling for search input
   const searchInput = document.querySelector(".hero-form__input");
   addSearchEventHandler(
     searchInput,
@@ -41,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateDropdownOptions
   );
 
+  // Event handling for dropdown lists
   addDropdownEventListeners(
     "ingredients-list",
     selectedIngredients,
@@ -81,6 +90,9 @@ document.addEventListener("DOMContentLoaded", () => {
     updateDropdownOptions
   );
 
+  // Initialize dropdown behavior
   initDropdowns();
+
+  // Initial update of dropdown options
   updateDropdownOptions(recipes);
 });
