@@ -1,3 +1,4 @@
+// Initialize dropdowns
 export function initDropdowns() {
   const dropdownButtons = document.querySelectorAll(".dropdown-toggle");
 
@@ -5,100 +6,119 @@ export function initDropdowns() {
     button.addEventListener("click", () => toggleDropdown(button));
   });
 
-  function toggleDropdown(button) {
-    const dropdownMenu = button.nextElementSibling;
-
-    if (dropdownMenu.classList.contains("show")) {
-      closeDropdown(button, dropdownMenu);
-    } else {
-      closeAllDropdowns();
-      openDropdown(button, dropdownMenu);
-    }
-  }
-
-  function openDropdown(button, dropdownMenu) {
-    const input = dropdownMenu.querySelector(".form-control");
-    const clearButton = dropdownMenu.querySelector(".form-control__icon-clear");
-
-    dropdownMenu.classList.add("show");
-    button.classList.add("open");
-    button.setAttribute("aria-expanded", "true");
-
-    if (input) {
-      initFilter(input, dropdownMenu, clearButton);
-    }
-  }
-
-  function initFilter(input, dropdownMenu, clearButton) {
-    if (!input.hasAttribute("data-filter-applied")) {
-      input.setAttribute("data-filter-applied", "true");
-      input.addEventListener("input", () => filterItems(input, dropdownMenu));
-      input.addEventListener("input", () => toggleClearButton(input, clearButton));
-    }
-    input.focus();
-    input.value = "";
-    filterItems(input, dropdownMenu);
-    toggleClearButton(input, clearButton); // Initial check for clear button visibility
-  }
-
-  function filterItems(input, dropdownMenu) {
-    const filter = input.value.trim().toLowerCase();
-    const items = dropdownMenu.querySelectorAll(".dropdown-item");
-
-    items.forEach((item) => {
-      const text = item.textContent.trim().toLowerCase();
-      item.style.display = text.includes(filter) ? "" : "none";
-    });
-  }
-
-  function closeDropdown(button, dropdownMenu) {
-    dropdownMenu.classList.remove("show");
-    button.classList.remove("open");
-    button.setAttribute("aria-expanded", "false");
-    resetFilter(dropdownMenu);
-  }
-
-  function resetFilter(dropdownMenu) {
-    const items = dropdownMenu.querySelectorAll(".dropdown-item");
-    items.forEach((item) => {
-      item.style.display = "";
-    });
-  }
-
-  function closeAllDropdowns() {
-    document.querySelectorAll(".dropdown-menu").forEach((menu) => {
-      menu.classList.remove("show");
-      resetFilter(menu);
-    });
-    document.querySelectorAll(".dropdown-toggle").forEach((btn) => {
-      btn.classList.remove("open");
-      btn.setAttribute("aria-expanded", "false");
-    });
-  }
-
-  function toggleClearButton(input, clearButton) {
-    if (input && clearButton) {
-      clearButton.style.display = input.value.trim() === "" ? "none" : "block";
-    }
-  }
-
-  // Add event listeners for clear buttons in all dropdowns
   document.querySelectorAll(".form-control__icon-clear").forEach((clearButton) => {
-    clearButton.addEventListener("click", function () {
-      const input = clearButton.previousElementSibling;
-      if (input) {
-        input.value = "";
-        input.focus();
-        clearButton.style.display = "none";
-        // Manually trigger the input event to update the filtered items
-        const event = new Event("input", {
-          bubbles: true,
-          cancelable: true,
-        });
-        input.dispatchEvent(event);
-      }
-    });
+    clearButton.addEventListener("click", handleClearButtonClick);
   });
+}
+
+function toggleDropdown(button) {
+  const dropdownMenu = button.nextElementSibling;
+
+  if (dropdownMenu.classList.contains("show")) {
+    closeDropdown(button, dropdownMenu);
+  } else {
+    closeAllDropdowns();
+    openDropdown(button, dropdownMenu);
+  }
+}
+
+function openDropdown(button, dropdownMenu) {
+  const input = dropdownMenu.querySelector(".form-control");
+  const clearButton = dropdownMenu.querySelector(".form-control__icon-clear");
+
+  dropdownMenu.classList.add("show");
+  button.classList.add("open");
+  button.setAttribute("aria-expanded", "true");
+
+  const chevronIcon = button.querySelector(".bi-chevron-down");
+  if (chevronIcon) {
+    chevronIcon.classList.remove("bi-chevron-down");
+    chevronIcon.classList.add("bi-chevron-up");
+  }
+
+  if (input) {
+    initFilter(input, dropdownMenu, clearButton);
+  }
+}
+
+function initFilter(input, dropdownMenu, clearButton) {
+  if (!input.hasAttribute("data-filter-applied")) {
+    input.setAttribute("data-filter-applied", "true");
+    input.addEventListener("input", () => filterItems(input, dropdownMenu));
+    input.addEventListener("input", () => toggleClearButton(input, clearButton));
+  }
+  input.focus();
+  input.value = "";
+  filterItems(input, dropdownMenu);
+  toggleClearButton(input, clearButton); // Initial check for clear button visibility
+}
+
+function filterItems(input, dropdownMenu) {
+  const filter = input.value.trim().toLowerCase();
+  const items = dropdownMenu.querySelectorAll(".dropdown-item");
+
+  items.forEach((item) => {
+    const text = item.textContent.trim().toLowerCase();
+    item.style.display = text.includes(filter) ? "" : "none";
+  });
+}
+
+function closeDropdown(button, dropdownMenu) {
+  dropdownMenu.classList.remove("show");
+  button.classList.remove("open");
+  button.setAttribute("aria-expanded", "false");
+  resetFilter(dropdownMenu);
+
+  const chevronIcon = button.querySelector(".bi-chevron-up");
+  if (chevronIcon) {
+    chevronIcon.classList.remove("bi-chevron-up");
+    chevronIcon.classList.add("bi-chevron-down");
+  }
+}
+
+function resetFilter(dropdownMenu) {
+  const items = dropdownMenu.querySelectorAll(".dropdown-item");
+  items.forEach((item) => {
+    item.style.display = "";
+  });
+}
+
+function closeAllDropdowns() {
+  document.querySelectorAll(".dropdown-menu").forEach((menu) => {
+    menu.classList.remove("show");
+    resetFilter(menu);
+
+    const relatedButton = menu.previousElementSibling;
+    const chevronIcon = relatedButton.querySelector(".bi-chevron-up");
+    if (chevronIcon) {
+      chevronIcon.classList.remove("bi-chevron-up");
+      chevronIcon.classList.add("bi-chevron-down");
+    }
+  });
+  document.querySelectorAll(".dropdown-toggle").forEach((btn) => {
+    btn.classList.remove("open");
+    btn.setAttribute("aria-expanded", "false");
+  });
+}
+
+function toggleClearButton(input, clearButton) {
+  if (input && clearButton) {
+    clearButton.style.display = input.value.trim() === "" ? "none" : "block";
+  }
+}
+
+function handleClearButtonClick() {
+  const input = this.previousElementSibling;
+  if (input) {
+    input.value = "";
+    input.focus();
+    this.style.display = "none";
+    const event = new Event("input", {
+      bubbles: true,
+      cancelable: true,
+    });
+    input.dispatchEvent(event);
+  }
 }
 
 // Data for filters
